@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class danhmuc extends Model
+{
+    use HasFactory;
+    
+    protected $fillable = [
+        'ID_DANHMUC',
+        'TENDANHMUC',
+        'HINHANH',
+    ];
+
+    public function diadanh()
+    {
+        return $this->hasMany('App\Models\diadanh','ID_DANHMUC','ID_DIADANH');
+    }
+}
