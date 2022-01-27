@@ -7,7 +7,7 @@
           <div class="col-sm-12">
             <h1 style="text-align:center;font-weight:bold;">QUẢN LÝ TÀI KHOẢN</h1>
             <div class="col-sm-6">
-            <a href="{{url('screenthemmien')}}"> <button type="button" class="btn btn-outline-success">Thêm</button></a>
+            <a href="{{route('taikhoan.create')}}"> <button type="button" class="btn btn-outline-success">Thêm</button></a>
           </div>
           </div>
         </div>
@@ -29,15 +29,14 @@
                       <th>Phân Quyền</th>
                       <th>Created_At</th>
                       <th>Updated_At</th>
-                      <th>Deleted_At</th>
-                      <th width="250px">Chức Năng</th>
+                      <th>Chức Năng</th>
                     </tr>
                     </thead>
                     @foreach ($lstTaiKhoan as $taikhoan)
                     <tbody>
                     <tr>
                       <td>{{$taikhoan->id}}</td>
-                      <td>{{$taikhoan->HINHANH}}</td>
+                      <td><img style="width:100px; max-height:100px; object-fit:contain" src="{{$taikhoan->HINHANH}}"></td>
                       <td>{{$taikhoan->HOTEN}}</td>
                       <td>{{$taikhoan->email}}</td>
                       <td>{{$taikhoan->password}}</td>
@@ -45,18 +44,19 @@
                       <td>{{$taikhoan->QUYEN}}</td>
                       <td>{{$taikhoan->created_at}}</td>
                       <td>{{$taikhoan->updated_at}}</td>
-                      <td>{{$taikhoan->deleted_at}}</td>
                       <td>
-                      <a href="{{url('screensuamien')}}"> 
+                      <a href="{{route('taikhoan.edit',['taikhoan'=>$taikhoan])}}"> 
                         <button type="button" class="btn btn-outline-success ">
                           <i class="fas fa-edit"></i>
                         </button>
                       </a>
-                      <a href="">
-                        <button type="button" class="btn btn-outline-danger">
+                      <form method="post" action="{{route('taikhoan.destroy',['taikhoan'=>$taikhoan])}}">
+                      @csrf
+                      @method('DELETE')
+                        <button type="submit" class="btn btn-outline-danger">
                           <i class="fas fa-trash"></i>
                         </button>
-                      </a>
+                      </form>
                       </td>
                     </tr>
                     </tbody>

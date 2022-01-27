@@ -2,26 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\taikhoan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class TaikhoanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected function fixImage(User $taikhoan)
+    {
+        if(Storage::disk('public')->exists($taikhoan->HINHANH)){
+            $taikhoan->HINHANH =Storage::url($taikhoan->HINHANH);
+        } else{
+            $taikhoan->HINHANH ='/uploads/NoImage.jpg';
+        }
+    }
     public function index()
     {
-        $lstTaiKhoan = DB::table('users')
-        ->select('*')
-        ->get();
-
-        return view('home.taikhoan',[
-            'lstTaiKhoan'=>$lstTaiKhoan
-        ]);
+        $lstTaiKhoan =User::all();
+        foreach($lstTaiKhoan as $taikhoan){
+            $this->fixImage($taikhoan);
+        }
+        return view('home.taikhoan',['lstTaiKhoan'=>$lstTaiKhoan]);
     }
 
     /**
@@ -31,7 +34,7 @@ class TaikhoanController extends Controller
      */
     public function create()
     {
-        //
+        return view('home.screentaikhoan.screenthemtaikhoan');
     }
 
     /**
@@ -42,51 +45,76 @@ class TaikhoanController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validatedData = $request->validate([
+            'email' => '|email|unique:users',
+        ],[
+            'email.email'=>'Email Không Đúng Định Dạng',
+            'email.unique'=>'Email Đã Tồn Tại',
+        ]
+    );
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\taikhoan  $taikhoan
-     * @return \Illuminate\Http\Response
-     */
-    public function show(taikhoan $taikhoan)
-    {
-        //
+        $taikhoan = new User;
+        $taikhoan->fill([
+            'HOTEN'=>$request->input('hoten'),
+            'email'=>$request->input('email'),
+            'password'=>bcrypt($request->input('matkhau')),
+            'SDT'=>$request->input('sodienthoai'),
+            'HINHANH'=>'',
+            'QUYEN'=>$request->input('phanquyen'),
+        ]);
+        $taikhoan->save();
+        if($request->hasFile('HINHANH')){
+            $taikhoan->HINHANH =$request->file('HINHANH')->store('images/avatar/','public');
+        }
+        $taikhoan->save();
+        return Redirect::route('taikhoan.index',['taikhoan'=>$taikhoan]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\taikhoan  $taikhoan
+     * @param  \App\Models\User  $taikhoan
      * @return \Illuminate\Http\Response
      */
-    public function edit(taikhoan $taikhoan)
+    public function edit(User $taikhoan)
     {
-        //
+        $this->fixImage($taikhoan);
+        return view('home.screentaikhoan.screensuataikhoan',['taikhoan'=>$taikhoan]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\taikhoan  $taikhoan
+     * @param  \App\Models\User  $taikhoan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, taikhoan $taikhoan)
+    public function update(Request $request, User $taikhoan)
     {
-        //
+        if($request->hasFile('HINHANH'))
+        {
+            $taikhoan->HINHANH =$request->file('HINHANH')->store('images/avatar/','public');
+        }
+        $taikhoan->fill([
+            'HOTEN'=>$request->input('hoten'),
+            'email'=>$request->input('email'),
+            'password'=>bcrypt($request->input('matkhau')),
+            'SDT'=>$request->input('sodienthoai'),
+            'QUYEN'=>$request->input('phanquyen'),
+        ]);
+        $taikhoan->save();
+        return Redirect::route('taikhoan.index',['taikhoan'=>$taikhoan]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\taikhoan  $taikhoan
+     * @param  \App\Models\User  $taikhoan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(taikhoan $taikhoan)
+    public function destroy(User $taikhoan)
     {
-        //
+        $taikhoan->delete();
+        return Redirect::route('taikhoan.index');
     }
 }

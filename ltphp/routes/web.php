@@ -16,7 +16,7 @@ use App\Http\Controllers\TinhthanhController;
 |
 */
 
-Route::get('/', [TaiKhoanController::class,'index']);
+Route::resource('/taikhoan',TaikhoanController::class);
 
 Route::get('mien', [MienController::class,'index']);
 

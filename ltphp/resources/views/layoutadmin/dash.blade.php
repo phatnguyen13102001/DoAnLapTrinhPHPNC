@@ -134,8 +134,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{url('/')}}" class="brand-link">
-      <img src="{{ asset('AdminLTE-3.2.0-rc/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">PSD Travel</span>
+      <img src="{{ asset('AdminLTE-3.2.0-rc/dist/img/LogoAppTravel.png')}}" alt="AppTravel Logo"  class="brand-image">
+      <span class="brand-text font-weight-light">PSD Travel Admin</span>
     </a>
 
     <!-- Sidebar -->
@@ -156,7 +156,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="{{url('/')}}" class="nav-link ">
+            <a href="{{route('taikhoan.index')}}" class="nav-link ">
             <i class="fas fa-user"></i>
               <p>
                 Quản Lý Tài Khoản
