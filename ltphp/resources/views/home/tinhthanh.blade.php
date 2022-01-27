@@ -8,7 +8,7 @@
             <h1>Quản lý Tỉnh Thành</h1>
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-            <a href="{{url('screenthemtinhthanh')}}"> <button type="button" class="btn btn-outline-success ">Thêm</button></a>
+            <a href="{{url('screenthemtinhthanh')}}"> <button style="background-color:#00cc00;" type="button" class="btn btn-outline-success ">Thêm</button></a>
             </ol>
           </div>
           </div>

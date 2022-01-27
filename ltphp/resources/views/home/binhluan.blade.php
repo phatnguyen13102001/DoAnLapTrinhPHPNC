@@ -22,38 +22,28 @@
                       <th>Id_Nguoi Binh Luan</th>
                       <th>Id_Bai Viet</th>
                       <th>Noi Dung</th>
-                      <th>Trang Thai</th>
+                      <th>Created_At</th>
+                      <th>Update_At</th>
+                      <th>Deleted_At</th>
                       <th>Chuc Nang</th>
                     </tr>
                     </thead>
+                    @foreach ($lstbinhluan as $binhluan)
                     <tbody>
                     <tr>
-                      <td>1</td>
-                      <td>vominhsanh.jpg</td>
-                      <td>Vo Minh Sanh</td>
-                      <td>sanh@gmail.com</td>
-                      <td>123</td>
+                      <td>{{$binhluan->id}}</td>
+                      <td>{{$binhluan->ID_NGUOIBL}}</td>
+                      <td>{{$binhluan->ID_BAIVIET}}</td>
+                      <td>{{$binhluan->NOIDUNG}}</td>
+                      <td>{{$binhluan->created_at}}</td>
+                      <td>{{$binhluan->updated_at}}</td>
+                      <td>{{$binhluan->deleted_at}}</td>
                       <td>
                       <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
                       </td>
                     </tr>
-                    <tr>
-                    <td>2</td>
-                      <td>NguyenTanPhat.jpg</td>
-                      <td>Nguyen Tan Phat</td>
-                      <td>phat@gmail.com</td>
-                      <td>123</td>
-                      
-                    </tr>
-                    <tr>
-                    <td>3</td>
-                      <td>vothanhdat.jpg</td>
-                      <td>Vo Thanh Dat</td>
-                      <td>dat@gmail.com</td>
-                      <td>123</td>
-                     
-                    </tr>
                     </tbody>
+                    @endforeach
                   </table>
             <!-- /.invoice -->
           </div><!-- /.col -->

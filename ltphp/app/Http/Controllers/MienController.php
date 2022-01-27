@@ -5,9 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\mien;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
 class MienController extends Controller
 {
+    protected function fiximage(mien $mien){
+        if(Storage::disk('public')->exists($mien->HINHANH)){
+            $mien->HINHANH = Storage::url($mien->HINHANH);
+        }
+    else{
+
+    }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,10 +24,13 @@ class MienController extends Controller
      */
     public function index()
     {
+      
         $lstVungMien = DB::table('vungmiens')
         ->select('*')
         ->get();
-
+       // foreach($lstVungMien as $vungmien){
+         //   $this->fiximage($vungmien);
+        //}
         return view('home.mien',[
             'lstVungMien'=>$lstVungMien
         ]);

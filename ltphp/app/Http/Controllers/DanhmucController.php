@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\danhmuc;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class DanhmucController extends Controller
 {
     /**
@@ -14,7 +14,12 @@ class DanhmucController extends Controller
      */
     public function index()
     {
-        //
+        $lstdanhmuc = DB::table('danhmucs')
+        ->select('*')
+        ->get();
+        return view('home.danhmuc',[
+            'lstdanhmuc'=>$lstdanhmuc
+        ]);
     }
 
     /**

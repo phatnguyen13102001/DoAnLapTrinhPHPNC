@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\baiviet;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class BaivietController extends Controller
 {
     /**
@@ -14,7 +14,12 @@ class BaivietController extends Controller
      */
     public function index()
     {
-        //
+        $lstbaiviet = DB::table('baiviets')
+        ->select('*')
+        ->get();
+        return view('home.baiviet',[
+            'lstbaiviet'=>$lstbaiviet
+        ]);
     }
 
     /**

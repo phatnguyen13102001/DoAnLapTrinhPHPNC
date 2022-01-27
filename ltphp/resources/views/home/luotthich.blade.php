@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Quản lý Lượt Thích</h1>
+          <h1 style="text-align:center;font-weight:bold;">QUẢN LÝ LƯỢT THÍCH</h1>
             <div class="col-sm-6">
           </div>
           </div>
@@ -22,28 +22,24 @@
                       <th>Id_Nguoi Thich</th>
                       <th>Id_Bai Viet</th>
                       <th>Trang Thai</th>
+                      <th>Created_At</th>
+                      <th>Update_At</th>
+                      <th>Deleted_At</th>
                     </tr>
                     </thead>
+                    @foreach ($lstluotthich as $luotthich)
                     <tbody>
                     <tr>
-                      <td>1</td>
-                      <td>vominhsanh.jpg</td>
-                      <td>Vo Minh Sanh</td>
-                      <td>sanh@gmail.com</td>
-                    </tr>
-                    <tr>
-                    <td>2</td>
-                      <td>NguyenTanPhat.jpg</td>
-                      <td>Nguyen Tan Phat</td>
-                      <td>phat@gmail.com</td>
-                    </tr>
-                    <tr>
-                    <td>3</td>
-                      <td>vothanhdat.jpg</td>
-                      <td>Vo Thanh Dat</td>
-                      <td>dat@gmail.com</td>
+                      <td>{{$luotthich->id}}</td>
+                      <td>{{$luotthich->ID_NGUOITHICH}}</td>
+                      <td>{{$luotthich->ID_BAIVIET}}</td>
+                      <td>{{$luotthich->TRANTHAI}}</td>
+                      <td>{{$luotthich->created_at}}</td>
+                      <td>{{$luotthich->updated_at}}</td>
+                      <td>{{$luotthich->deleted_at}}</td>
                     </tr>
                     </tbody>
+                    @endforeach
                   </table>
             <!-- /.invoice -->
           </div><!-- /.col -->

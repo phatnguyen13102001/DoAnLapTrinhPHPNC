@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\luotthich;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class LuotthichController extends Controller
 {
     /**
@@ -14,7 +14,10 @@ class LuotthichController extends Controller
      */
     public function index()
     {
-        //
+        $lstluotthich = DB::table('luotthichs') ->select('*') ->get();
+        return view('home.luotthich',[
+            'lstluotthich'=>$lstluotthich
+        ]);
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\luotxem;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class LuotxemController extends Controller
 {
     /**
@@ -14,7 +14,8 @@ class LuotxemController extends Controller
      */
     public function index()
     {
-        //
+        $lstluotxem = DB::table('luotxems')-> select('*')-> get();
+        return view('home.luotxem', ['lstluotxem' => $lstluotxem]);
     }
 
     /**
