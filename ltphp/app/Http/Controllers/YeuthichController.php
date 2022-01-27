@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\yeuthich;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class YeuthichController extends Controller
 {
     /**
@@ -14,7 +14,8 @@ class YeuthichController extends Controller
      */
     public function index()
     {
-        //
+        $lstyeuthich = DB::table('yeuthichs')-> select('*')-> get();
+        return view('home.yeuthich',['lstyeuthich'=> $lstyeuthich]);
     }
 
     /**

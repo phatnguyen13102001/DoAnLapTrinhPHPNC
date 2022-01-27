@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\diadanh;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class DiadanhController extends Controller
 {
     /**
@@ -14,7 +14,12 @@ class DiadanhController extends Controller
      */
     public function index()
     {
-        //
+        $lstdiadanh = DB::table('diadanhs')
+        ->select('*')
+        ->get();
+        return view('home.diadanh',[
+            'lstdiadanh'=>$lstdiadanh
+        ]);
     }
 
     /**

@@ -5,11 +5,9 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Quản lý Địa Danh</h1>
+          <h1 style="text-align:center;font-weight:bold;">QUẢN LÝ ĐỊA DANH</h1>
             <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-             <a href="{{url('screenthemdiadanh')}}"> <button type="button" class="btn btn-outline-success ">Thêm</button></a>
-            </ol>
+             <a href="{{url('screenthemdiadanh')}}"> <button style="background-color:#00cc00;" type="button" class="btn btn-outline-success ">Thêm</button></a>
           </div>
           </div>
         </div>
@@ -30,56 +28,34 @@
                       <th>Kinh Do</th>
                       <th>Vi Do</th>
                       <th>Mo Ta</th>
-                      <th>Yeu Thich</th>
-                      <th>Trang Thai</th>
+                      <th>Created_At</th>
+                      <th>Updated_At</th>
+                      <th>Deleted_At</th>
                       <th>Chuc Nang</th>
                     </tr>
                     </thead>
+                    @foreach ($lstdiadanh as $diadanh)
                     <tbody>
                     <tr>
-                      <td>1</td>
-                      <td>vominhsanh.jpg</td>
-                      <td>Vo Minh Sanh</td>
-                      <td>sanh@gmail.com</td>
-                      <td>123</td>
-                      <td>123</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>123</td>
-                      <td>1</td>
-                      <td>1</td>
+                      <td>{{$diadanh->id}}</td>
+                      <td>{{$diadanh->ID_DANHMUC}}</td>
+                      <td>{{$diadanh->ID_TINH}}</td>
+                      <td>{{$diadanh->TENDIADANH}}</td>
+                      <td>{{$diadanh->HINHANH}}</td>
+                      <td>{{$diadanh->DIACHI}}</td>
+                      <td>{{$diadanh->KINHDO}}</td>
+                      <td>{{$diadanh->VIDO}}</td>
+                      <td>{{$diadanh->MOTA}}</td>
+                      <td>{{$diadanh->created_at}}</td>
+                      <td>{{$diadanh->updated_at}}</td>
+                      <td>{{$diadanh->deleted_at}}</td>
                       <td>
   <a href="{{url('screensuadiadanh')}}"> <button type="button" class="btn btn-outline-success "><i class="fas fa-edit"></i></button></a>
    <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
                       </td>
                     </tr>
-                    <tr>
-                    <td>2</td>
-                      <td>NguyenTanPhat.jpg</td>
-                      <td>Nguyen Tan Phat</td>
-                      <td>phat@gmail.com</td>
-                      <td>123</td>
-                      <td>123</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>123</td>
-                      <td>1</td>
-                      <td>1</td>
-                    </tr>
-                    <tr>
-                    <td>3</td>
-                      <td>vothanhdat.jpg</td>
-                      <td>Vo Thanh Dat</td>
-                      <td>dat@gmail.com</td>
-                      <td>123</td>
-                      <td>123</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>123</td>
-                      <td>1</td>
-                      <td>1</td>
-                    </tr>
                     </tbody>
+                    @endforeach
                   </table>
             <!-- /.invoice -->
           </div><!-- /.col -->

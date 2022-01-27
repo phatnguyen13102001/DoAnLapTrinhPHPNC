@@ -6,8 +6,8 @@
         <div class="row mb-2">
           <div class="col-sm-12">
             <h1 style="text-align:center;font-weight:bold;">QUẢN LÝ TÀI KHOẢN</h1>
-            <div class="col-sm-6">
-            <a href="{{url('screenthemmien')}}"> <button type="button" class="btn btn-outline-success">Thêm</button></a>
+            <div class="col-sm-6" >
+            <a   href="{{url('screenthemmien')}}"> <button style="background-color:#00cc00;" type="button" class="btn btn-outline-success">Thêm</button></a>
           </div>
           </div>
         </div>

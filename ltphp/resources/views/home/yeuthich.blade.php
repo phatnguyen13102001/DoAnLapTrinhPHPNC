@@ -19,48 +19,27 @@
                     <thead>
                     <tr>
                       <th>Id</th>
-                      <th>Hinh Anh</th>
-                      <th>Ho Ten</th>
-                      <th>Email</th>
-                      <th>Mat Khau</th>
-                      <th>SDT</th>
-                      <th>Quyen</th>
-                      <th>Trang Thai</th>
-                      <th>Chuc Nang</th>
+                      <th>ID Người Thích</th>
+                      <th>ID Địa Danh</th>
+                      <th>Trạng Thái</th>
+                      <th>Created_At</th>
+                      <th>Updated_At</th>
+                      <th>Deleted_At</th>
                     </tr>
                     </thead>
+                    @foreach ($lstyeuthich as $yeuthich)
                     <tbody>
                     <tr>
-                      <td>1</td>
-                      <td>vominhsanh.jpg</td>
-                      <td>Vo Minh Sanh</td>
-                      <td>sanh@gmail.com</td>
-                      <td>123</td>
-                      <td>123</td>
-                      <td>1</td>
-                      <td>1</td>
-                    </tr>
-                    <tr>
-                    <td>2</td>
-                      <td>NguyenTanPhat.jpg</td>
-                      <td>Nguyen Tan Phat</td>
-                      <td>phat@gmail.com</td>
-                      <td>123</td>
-                      <td>123</td>
-                      <td>1</td>
-                      <td>1</td>
-                    </tr>
-                    <tr>
-                    <td>3</td>
-                      <td>vothanhdat.jpg</td>
-                      <td>Vo Thanh Dat</td>
-                      <td>dat@gmail.com</td>
-                      <td>123</td>
-                      <td>123</td>
-                      <td>1</td>
-                      <td>1</td>
-                    </tr>
+                      <td>{{$yeuthich->id}}</td>
+                      <td>{{$yeuthich->ID_NGUOITHICH}}</td>
+                      <td>{{$yeuthich->ID_DIADANH}}</td>
+                      <td>{{$yeuthich->TRANGTHAI}}</td>
+                      <td>{{$yeuthich->created_at}}</td>
+                      <td>{{$yeuthich->updated_at}}</td>
+                      <td>{{$yeuthich->deleted_at}}</td>
+                    </tr>        
                     </tbody>
+                    @endforeach
                   </table>
             <!-- /.invoice -->
           </div><!-- /.col -->

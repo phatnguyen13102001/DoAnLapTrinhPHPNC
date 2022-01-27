@@ -4,7 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaiKhoanController;
 use App\Http\Controllers\MienController;
 use App\Http\Controllers\TinhthanhController;
-
+use App\Http\Controllers\DanhmucController;
+use App\Http\Controllers\DiadanhController;
+use App\Http\Controllers\BaivietController;
+use App\Http\Controllers\BinhluanController;
+use App\Http\Controllers\LuotthichController;
+use App\Http\Controllers\LuotxemController;
+use App\Http\Controllers\YeuthichController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,29 +25,14 @@ use App\Http\Controllers\TinhthanhController;
 Route::get('/', [TaiKhoanController::class,'index']);
 
 Route::get('mien', [MienController::class,'index']);
-
-Route::get('yeuthich', function () {
-  return view('home.yeuthich');
-});
+Route::get('danhmuc', [DanhmucController::class,'index']);
+Route::get('diadanh', [DiadanhController::class,'index']);
+Route::get('baiviet', [BaivietController::class,'index']);
+Route::get('binhluan', [BinhluanController::class,'index']);
+Route::get('luotthich', [LuotthichController::class,'index']);
+Route::get('luotxem', [LuotxemController::class,'index']);
+Route::get('yeuthich', [YeuthichController::class,'index']);
 Route::get('/tinhthanh', [TinhthanhController::class,'index']);
-Route::get('luotxem', function () {
-  return view('home.luotxem');
-});
-Route::get('luotthich', function () {
-  return view('home.luotthich');
-});
-Route::get('diadanh', function () {
-  return view('home.diadanh');
-});
-Route::get('danhmuc', function () {
-  return view('home.danhmuc');
-});
-Route::get('binhluan', function () {
-  return view('home.binhluan');
-});
-Route::get('baiviet', function () {
-  return view('home.baiviet');
-});
 Route::get('login', function () {
   return view('login.login');
 });

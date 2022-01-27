@@ -8,7 +8,7 @@
             <h1>Quản lý Miền</h1>
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-            <a href="{{url('screenthemmien')}}"> <button type="button" class="btn btn-outline-success ">Thêm</button></a>
+            <a href="{{url('screenthemmien')}}"> <button style="background-color:#00cc00;" type="button" class="btn btn-outline-success ">Thêm</button></a>
             </ol>
           </div>
           </div>
@@ -35,7 +35,7 @@
                     <tr>
                       <td>{{$vungmien->id}}</td>
                       <td>{{$vungmien->TENMIEN}}</td>
-                      <td>{{$vungmien->HINHANH}}</td>
+                      <td><img style="width:100px; max-height:100px; object-fit:contain" src="{{$vungmien->HINHANH}}"></td>
                       <td>{{$vungmien->created_at}}</td>
                       <td>{{$vungmien->updated_at}}</td>
                       <td>{{$vungmien->deleted_at}}</td>
