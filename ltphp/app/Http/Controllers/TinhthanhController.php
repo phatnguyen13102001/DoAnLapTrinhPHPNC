@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\mien;
 use App\Models\tinhthanh;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class TinhthanhController extends Controller
 {
@@ -27,7 +31,8 @@ class TinhthanhController extends Controller
      */
     public function create()
     {
-        //
+        $lstmien = mien::all();
+        return view('home.screentinhthanh.screenthemtinhthanh', ['lstmien' => $lstmien]);
     }
 
     /**
@@ -38,7 +43,13 @@ class TinhthanhController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tinhthanh = new tinhthanh;
+        $tinhthanh->fill([
+            'ID_MIEN' => $request->input('id_mien'),
+            'TENTINH' => $request->input('tentinh'),
+        ]);
+        $tinhthanh->save();
+        return Redirect::route('tinhthanh.index', ['tinhthanh' => $tinhthanh]);
     }
 
     /**
@@ -60,7 +71,11 @@ class TinhthanhController extends Controller
      */
     public function edit(tinhthanh $tinhthanh)
     {
-        //
+        $lstmien = mien::all();
+        return view(
+            'home.screentinhthanh.screensuatinhthanh',
+            ['tinhthanh' => $tinhthanh, 'lstmien' => $lstmien]
+        );
     }
 
     /**
@@ -72,7 +87,12 @@ class TinhthanhController extends Controller
      */
     public function update(Request $request, tinhthanh $tinhthanh)
     {
-        //
+        $tinhthanh->fill([
+            'ID_MIEN' => $request->input('id_mien'),
+            'TENTINH' => $request->input('tentinh'),
+        ]);
+        $tinhthanh->save();
+        return Redirect::route('tinhthanh.index', ['tinhthanh' => $tinhthanh]);
     }
 
     /**
@@ -83,6 +103,7 @@ class TinhthanhController extends Controller
      */
     public function destroy(tinhthanh $tinhthanh)
     {
-        //
+        $tinhthanh->delete();
+        return Redirect::route('tinhthanh.index');
     }
 }

@@ -4,19 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 class diadanh extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes, Notifiable;
     protected $table = "diadanhs";
-
     protected $guarded = [];
-
     protected $fillable = [
         'ID_DANHMUC',
         'ID_TINH',
         'TENDIADANH',
         'HINHANH',
+        'DIACHI',
         'KINHDO',
         'VIDO',
         'MOTA',

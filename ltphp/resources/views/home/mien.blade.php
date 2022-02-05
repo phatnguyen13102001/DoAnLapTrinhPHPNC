@@ -7,12 +7,11 @@
         <div class="col-sm-12">
           <h1 style="text-align:center;font-weight:bold;">QUẢN LÝ MIỀN</h1>
           <div class="col-sm-6">
-            <a href=""> <button type="button" class="btn btn-success">Thêm</button></a>
+            <a href="{{route('mien.create')}}"> <button style="background-color:#00cc00;" type="button" class="btn btn-outline-success">Thêm</button></a>
             </ol>
           </div>
         </div>
-      </div>
-    </div><!-- /.container-fluid -->
+      </div><!-- /.container-fluid -->
   </section>
   <section class="content">
     <div class="container-fluid">
@@ -25,28 +24,27 @@
               <th>Hình Ảnh</th>
               <th>Created_At</th>
               <th>Updated_At</th>
+              <th>Deleted_At</th>
               <th>Chức Năng</th>
             </tr>
           </thead>
-          @foreach($lstVungMien as $vungmien)
+          @foreach($lstVungMien as $mien)
           <tbody>
             <tr>
-              <td>{{$vungmien->id}}</td>
-              <td>{{$vungmien->TENMIEN}}</td>
-              <td><img style="width:100px; max-height:100px; object-fit:contain" src="{{$vungmien->HINHANH}}"></td>
-              <td>{{$vungmien->created_at}}</td>
-              <td>{{$vungmien->updated_at}}</td>
+              <td>{{$mien->id}}</td>
+              <td>{{$mien->TENMIEN}}</td>
+              <td><img style="width:100px; max-height:100px; object-fit:contain" src="{{$mien->HINHANH}}"></td>
+              <td>{{$mien->created_at}}</td>
+              <td>{{$mien->updated_at}}</td>
+              <td>{{$mien->deleted_at}}</td>
               <td>
-                <a href="{{url('screensuamien')}}">
-                  <button type="button" class="btn btn-outline-success ">
-                    <i class="fas fa-edit"></i>
-                  </button>
-                </a>
-                <a href="">
-                  <button type="button" class="btn btn-outline-danger">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                </a>
+
+                <a href="{{route('mien.edit',['mien'=>$mien])}}"> <button type="submit" class="btn btn-outline-success "><i class="fas fa-edit"></i></button></a>
+                <form method="post" action="{{route('mien.destroy',['mien'=>$mien])}}">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
+                </form>
               </td>
             </tr>
           </tbody>

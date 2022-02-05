@@ -9,7 +9,7 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="../../index3.html" method="post">
+      <form>
         <div class="input-group mb-3">
           <input type="email" class="form-control" placeholder="Email">
           <div class="input-group-append">
@@ -36,7 +36,8 @@
             </div>
           </div>
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+
+            <button type="submit" class="btn btn-primary btn-block"> <a href="{{url('/taikhoan')}}">Sign In</a></button>
           </div>
         </div>
       </form>
@@ -48,5 +49,5 @@
       </p>
     </div>
     <!-- /.login-card-body -->
-</div>
-@stop
+  </div>
+  @stop

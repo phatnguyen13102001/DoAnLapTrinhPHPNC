@@ -27,18 +27,15 @@ Route::resource('/tinhthanh', TinhthanhController::class);
 Route::resource('/mien', MienController::class);
 Route::resource('/danhmuc', DanhmucController::class);
 Route::resource('/baiviet', BaivietController::class);
-
-Route::get('diadanh', [DiadanhController::class, 'index']);
+Route::resource('/diadanh', DiadanhController::class);
 Route::get('binhluan', [BinhluanController::class, 'index']);
 Route::get('luotthich', [LuotthichController::class, 'index']);
 Route::get('luotxem', [LuotxemController::class, 'index']);
 Route::get('yeuthich', [YeuthichController::class, 'index']);
-Route::get('login', function () {
+Route::get('binhluan', [BinhluanController::class, 'index']);
+Route::get('luotthich', [LuotthichController::class, 'index']);
+Route::get('luotxem', [LuotxemController::class, 'index']);
+Route::get('yeuthich', [YeuthichController::class, 'index']);
+Route::get('/', function () {
   return view('login.login');
-});
-Route::get('screenthemdiadanh', function () {
-  return view('home.screendiadanh.screenthemdiadanh');
-});
-Route::get('screensuadiadanh', function () {
-  return view('home.screendiadanh.screensuadiadanh');
 });

@@ -3,19 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\diadanh;
+use App\Models\danhmuc;
+use App\Models\tinhthanh;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
 
 class DiadanhController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected function fixImage(diadanh $diadanh)
+    {
+        if (Storage::disk('public')->exists($diadanh->HINHANH)) {
+            $diadanh->HINHANH = Storage::url($diadanh->HINHANH);
+        } else {
+            $diadanh->HINHANH = '/uploads/NoImage.jpg';
+        }
+    }
     public function index()
     {
         $lstdiadanh = diadanh::all();
+        foreach ($lstdiadanh as $diadanh) {
+            $this->fixImage($diadanh);
+        }
         return view('home.diadanh', [
             'lstdiadanh' => $lstdiadanh
         ]);
@@ -28,7 +37,13 @@ class DiadanhController extends Controller
      */
     public function create()
     {
-        //
+        $lstdanhmuc = danhmuc::all();
+        $lsttinhthanh = tinhthanh::all();
+        return view(
+            'home.screendiadanh.screenthemdiadanh',
+            ['lstdanhmuc' => $lstdanhmuc],
+            ['lsttinhthanh' => $lsttinhthanh]
+        );
     }
 
     /**
@@ -39,7 +54,23 @@ class DiadanhController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $diadanh = new diadanh;
+        $diadanh->fill([
+            'ID_DANHMUC' => $request->input('iddanhmuc'),
+            'ID_TINH' => $request->input('idtinh'),
+            'TENDIADANH' => $request->input('tendiadanh'),
+            'HINHANH' => '',
+            'DIACHI' => $request->input('diachi'),
+            'KINHDO' => $request->input('kinhdo'),
+            'VIDO' => $request->input('vido'),
+            'MOTA' => $request->input('mota')
+        ]);
+        $diadanh->save();
+        if ($request->hasFile('HINHANH')) {
+            $diadanh->HINHANH = $request->file('HINHANH')->store('images/diadanh/', 'public');
+        }
+        $diadanh->save();
+        return Redirect::route('diadanh.index', ['diadanh' => $diadanh]);
     }
 
     /**
@@ -61,7 +92,12 @@ class DiadanhController extends Controller
      */
     public function edit(diadanh $diadanh)
     {
-        //
+        $lstdanhmuc = danhmuc::all();
+        $lsttinhthanh = tinhthanh::all();
+        return view(
+            'home.screendiadanh.screensuadiadanh',
+            ['diadanh' => $diadanh, 'lstdanhmuc' => $lstdanhmuc, 'lsttinhthanh' => $lsttinhthanh]
+        );
     }
 
     /**
@@ -73,7 +109,20 @@ class DiadanhController extends Controller
      */
     public function update(Request $request, diadanh $diadanh)
     {
-        //
+        if ($request->hasFile('HINHANH')) {
+            $diadanh->HINHANH = $request->file('HINHANH')->store('images/diadanh/', 'public');
+        }
+        $diadanh->fill([
+            'ID_DANHMUC' => $request->input('iddanhmuc'),
+            'ID_TINH' => $request->input('idtinh'),
+            'TENDIADANH' => $request->input('tendiadanh'),
+            'DIACHI' => $request->input('diachi'),
+            'KINHDO' => $request->input('kinhdo'),
+            'VIDO' => $request->input('vido'),
+            'MOTA' => $request->input('mota')
+        ]);
+        $diadanh->save();
+        return Redirect::route('diadanh.index', ['diadanh' => $diadanh]);
     }
 
     /**
@@ -84,6 +133,7 @@ class DiadanhController extends Controller
      */
     public function destroy(diadanh $diadanh)
     {
-        //
+        $diadanh->delete();
+        return Redirect::route('diadanh.index');
     }
 }
