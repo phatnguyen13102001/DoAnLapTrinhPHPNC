@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\danhmuc;
-use Illuminate\Support\Facades\DB;
 
 class DanhMucController extends Controller
 {
@@ -16,7 +15,7 @@ class DanhMucController extends Controller
      */
     public function index()
     {
-        $danhmuc = DB::table('danhmucs')->get();
+        $danhmuc = danhmuc::all();
         $response['DanhMuc'] =  $danhmuc;
         return json_encode($response);
     }

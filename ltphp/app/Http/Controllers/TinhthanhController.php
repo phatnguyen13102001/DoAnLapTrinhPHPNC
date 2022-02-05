@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\tinhthanh;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class TinhthanhController extends Controller
 {
@@ -15,13 +14,9 @@ class TinhthanhController extends Controller
      */
     public function index()
     {
-        $lstTinhThanh = DB::table('tinhthanhs')
-        ->join('vungmiens', 'ID_MIEN', '=', 'vungmiens.id')
-        ->select('tinhthanhs.id','vungmiens.TENMIEN','tinhthanhs.TENTINH','tinhthanhs.created_at','tinhthanhs.updated_at','tinhthanhs.deleted_at')
-        ->get();
-
-        return view('home.tinhthanh',[
-            'lstTinhThanh'=>$lstTinhThanh
+        $lstTinhThanh = tinhthanh::all();
+        return view('home.tinhthanh', [
+            'lstTinhThanh' => $lstTinhThanh
         ]);
     }
 

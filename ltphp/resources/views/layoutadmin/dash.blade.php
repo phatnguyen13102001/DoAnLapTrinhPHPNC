@@ -1,4 +1,3 @@
-
 @extends('layoutadmin.layout')
 @section('body')
 <div class="wrapper">
@@ -44,10 +43,10 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="https://scontent.fvca1-1.fna.fbcdn.net/v/t1.6435-9/135059568_1106577266444792_7297047493716215427_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=174925&_nc_ohc=QitLZfu8DUMAX82oKZp&tn=eL1T1qt6HfI-Umkv&_nc_ht=scontent.fvca1-1.fna&oh=00_AT8Z8dn7duBbGfs2WkB8e2jAj-225dVWuNxmD58gM7M7-A&oe=621A7433" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
-                  Brad Diesel
+                  Minh Sanh
                   <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
                 </h3>
                 <p class="text-sm">Call me whenever you can...</p>
@@ -60,10 +59,10 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="{{ asset('AdminLTE-3.2.0-rc/dist/img/user9.jpg')}}" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
-                  John Pierce
+                  An Ngô
                   <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
                 </h3>
                 <p class="text-sm">I got your message bro</p>
@@ -76,10 +75,10 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="../../dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="{{ asset('AdminLTE-3.2.0-rc/dist/img/user10.png')}}" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
-                  Nora Silvester
+                  Đạt Võ
                   <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
                 </h3>
                 <p class="text-sm">The subject goes here</p>
@@ -126,15 +125,15 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
+          <i class="fas fa-sign-out-alt" style='font-size:18px'></i>
         </a>
       </li>
     </ul>
   </nav>
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{url('/')}}" class="brand-link">
-      <img src="{{ asset('AdminLTE-3.2.0-rc/dist/img/LogoAppTravel.png')}}" alt="AppTravel Logo"  class="brand-image">
+    <a href="{{route('taikhoan.index')}}" class="brand-link">
+      <img src="{{ asset('AdminLTE-3.2.0-rc/dist/img/LogoAppTravel.png')}}" alt="AppTravel Logo" class="brand-image">
       <span class="brand-text font-weight-light">PSD Travel Admin</span>
     </a>
 
@@ -143,10 +142,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('AdminLTE-3.2.0-rc/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('AdminLTE-3.2.0-rc/dist/img/user8.png')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="{{url('/')}}" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Phát Nguyễn</a>
         </div>
       </div>
 
@@ -155,25 +154,25 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
+          <li class="nav-item">
             <a href="{{route('taikhoan.index')}}" class="nav-link ">
-            <i class="fas fa-user"></i>
+              <i class="fas fa-user"></i>
               <p>
                 Quản Lý Tài Khoản
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{url('tinhthanh')}}" class="nav-link">
-            <i class="fas fa-city"></i>
+            <a href="{{route('tinhthanh.index')}}" class="nav-link">
+              <i class="fas fa-city"></i>
               <p>
                 Quản Lý Tỉnh Thành
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{url('mien')}}" class="nav-link">
-            <i class="fas fa-building"></i>
+            <a href="{{route('mien.index')}}" class="nav-link">
+              <i class="fas fa-building"></i>
               <p>
                 Quản Lý Miền
               </p>
@@ -181,7 +180,7 @@
           </li>
           <li class="nav-item">
             <a href="{{url('diadanh')}}" class="nav-link">
-            <i class="fas fa-sitemap"></i>
+              <i class="fas fa-sitemap"></i>
               <p>
                 Quản Lý Địa Danh
               </p>
@@ -189,15 +188,15 @@
           </li>
           <li class="nav-item">
             <a href="{{url('danhmuc')}}" class="nav-link">
-            <i class="fas fa-align-right"></i>
+              <i class="fas fa-align-right"></i>
               <p>
-               Quản Lý Danh Mục
+                Quản Lý Danh Mục
               </p>
             </a>
           </li>
           <li class="nav-item">
             <a href="baiviet" class="nav-link">
-            <i class="fas fa-clone"></i>
+              <i class="fas fa-clone"></i>
               <p>
                 Quản Lý Bài Viết
               </p>
@@ -205,7 +204,7 @@
           </li>
           <li class="nav-item">
             <a href="binhluan" class="nav-link">
-            <i class="fas fa-comment"></i>
+              <i class="fas fa-comment"></i>
               <p>
                 Quản Lý Bình Luận
               </p>
@@ -213,7 +212,7 @@
           </li>
           <li class="nav-item">
             <a href="luotthich" class="nav-link">
-            <i class="far fa-thumbs-up"></i>
+              <i class="far fa-thumbs-up"></i>
               <p>
                 Quản Lý Lượt Thích
               </p>
@@ -221,7 +220,7 @@
           </li>
           <li class="nav-item">
             <a href="luotxem" class="nav-link">
-            <i class="fas fa-eye"></i>
+              <i class="fas fa-eye"></i>
               <p>
                 Quản Lý Lượt Xem
               </p>
@@ -229,7 +228,7 @@
           </li>
           <li class="nav-item">
             <a href="yeuthich" class="nav-link">
-            <i class="fas fa-heart"></i>
+              <i class="fas fa-heart"></i>
               <p>
                 Quản Lý Lượt Yêu Thích
               </p>
@@ -241,6 +240,6 @@
   </aside>
   <!-- /.content-wrapper -->
   @yield('section');
-<footer class="main-footer">
-</footer>
-@endsection
+  <footer class="main-footer">
+  </footer>
+  @endsection

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\mien;
-use Illuminate\Support\Facades\DB;
 
 class MienController extends Controller
 {
@@ -16,7 +15,7 @@ class MienController extends Controller
      */
     public function index()
     {
-        $vungmien = DB::table('vungmiens')->get();
+        $vungmien = mien::all();
         $response['VungMien'] =  $vungmien;
         return json_encode($response);
     }

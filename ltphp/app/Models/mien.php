@@ -9,8 +9,8 @@ class mien extends Model
 {
     use HasFactory;
 
-    protected $table="vungmiens";
-    
+    protected $table = "vungmiens";
+
     protected $fillable = [
         'ID_MIEN',
         'TENMIEN',
@@ -19,6 +19,6 @@ class mien extends Model
 
     public function tinhthanh()
     {
-        return $this->hasMany('App\Models\tinhthanh','ID_MIEN','ID_TINHTHANH');
+        return $this->hasMany('App\Models\tinhthanh', 'ID_MIEN', 'id');
     }
 }

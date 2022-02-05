@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\baiviet;
-use App\Models\users;
-use App\Models\diadanh;
 use Illuminate\Support\Facades\DB;
 
 class BaiVietController extends Controller
@@ -20,27 +18,27 @@ class BaiVietController extends Controller
     public function InsertPost(Request $request)
     {
         $baiviet = new baiviet;
-        $baiviet ->ID_NGUOIDANG = $request->ID_NGUOIDANG;
-        $baiviet ->ID_DIADANH = $request->ID_DIADANH;
-        $baiviet ->NOIDUNG = $request->NOIDUNG;
+        $baiviet->ID_NGUOIDANG = $request->ID_NGUOIDANG;
+        $baiviet->ID_DIADANH = $request->ID_DIADANH;
+        $baiviet->NOIDUNG = $request->NOIDUNG;
         $baiviet->HINHANH = $request->file('HINHANH');
-        if($request->hasFile('HINHANH')){
-            $new_name=rand().'.'.$baiviet->HINHANH->getClientOriginalExtension();
-            $baiviet->HINHANH->move(public_path('/uploads'),$new_name);
-            $baiviet->HINHANH =$new_name;
-        }else{
+        if ($request->hasFile('HINHANH')) {
+            $new_name = rand() . '.' . $baiviet->HINHANH->getClientOriginalExtension();
+            $baiviet->HINHANH->move(public_path('/uploads'), $new_name);
+            $baiviet->HINHANH = $new_name;
+        } else {
             return response()->json('image null');
         }
-        if($baiviet->save()){
+        if ($baiviet->save()) {
             return response()->json([
-                "BaiViet" =>$baiviet,
+                "BaiViet" => $baiviet,
                 "msg" => "Thêm Thành Công"
-            ],201);
-        }else{
+            ], 201);
+        } else {
             return response()->json([
-                "BaiViet" =>null,
+                "BaiViet" => null,
                 'msg' => "Thêm Thất Bại"
-            ],400);
+            ], 400);
         }
     }
 
@@ -53,11 +51,11 @@ class BaiVietController extends Controller
     public function ShowPostByIDSite($id)
     {
         $baiviet = DB::table('baiviets')
-           ->join('users', 'ID_NGUOIDANG', '=', 'users.id')
-           ->join('diadanhs', 'ID_DIADANH', '=', 'diadanhs.id')
-           ->select('users.HOTEN','users.HINHANH as HINHANHTK','diadanhs.TENDIADANH', 'baiviets.NOIDUNG','baiviets.HINHANH','baiviets.id','users.id','diadanhs.id')
-           ->where('baiviets.ID_DIADANH',$id)
-           ->get();
+            ->join('users', 'ID_NGUOIDANG', '=', 'users.id')
+            ->join('diadanhs', 'ID_DIADANH', '=', 'diadanhs.id')
+            ->select('users.HOTEN', 'users.HINHANH as HINHANHTK', 'diadanhs.TENDIADANH', 'baiviets.NOIDUNG', 'baiviets.HINHANH', 'baiviets.id', 'users.id', 'diadanhs.id')
+            ->where('baiviets.ID_DIADANH', $id)
+            ->get();
         $response['BaiViet'] =  $baiviet;
         return json_encode($response);
     }

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\baiviet;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+
 class BaivietController extends Controller
 {
     /**
@@ -14,11 +15,9 @@ class BaivietController extends Controller
      */
     public function index()
     {
-        $lstbaiviet = DB::table('baiviets')
-        ->select('*')
-        ->get();
-        return view('home.baiviet',[
-            'lstbaiviet'=>$lstbaiviet
+        $lstbaiviet = baiviet::all();
+        return view('home.baiviet', [
+            'lstbaiviet' => $lstbaiviet
         ]);
     }
 
@@ -85,6 +84,7 @@ class BaivietController extends Controller
      */
     public function destroy(baiviet $baiviet)
     {
-        //
+        $baiviet->delete();
+        return Redirect::route('baiviet.index');
     }
 }

@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class diadanh extends Model
 {
     use HasFactory;
-    protected $table ="diadanhs";
-    
+    protected $table = "diadanhs";
+
+    protected $guarded = [];
+
     protected $fillable = [
-        'ID_DIADANH',
         'ID_DANHMUC',
         'ID_TINH',
         'TENDIADANH',
@@ -23,21 +24,21 @@ class diadanh extends Model
 
     public function tinhthanh()
     {
-        return $this->belongsTo('App\Models\tinhthanh','ID_TINHTHANH','ID_DIADANH');
+        return $this->belongsTo('App\Models\tinhthanh', 'ID_TINH', 'id');
     }
 
     public function danhmuc()
     {
-        return $this->belongsTo('App\Models\danhmuc','ID_DANHMUC','ID_DIADANH');
+        return $this->belongsTo('App\Models\danhmuc', 'ID_DANHMUC', 'id');
     }
 
     public function baiviet()
     {
-        return $this->hasMany('App\Models\baiviet','ID_DIADANH','ID_BAIVIET');
+        return $this->hasMany('App\Models\baiviet', 'ID_DIADANH', 'ID_BAIVIET');
     }
 
     public function yeuthich()
     {
-        return $this->hasMany('App\Models\yeuthich','ID_DIADANH','ID_YEUTHICH');
+        return $this->hasMany('App\Models\yeuthich', 'ID_DIADANH', 'ID_YEUTHICH');
     }
 }

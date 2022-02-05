@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -19,7 +18,7 @@ class UserController extends Controller
      */
     public function show($email)
     {
-        $user = DB::table('users')->where('email',$email)->get();
+        $user = DB::table('users')->where('email', $email)->get();
         $response['User'] =  $user;
         return json_encode($response);
     }
@@ -33,26 +32,26 @@ class UserController extends Controller
      */
     public function update(Request $request, $email)
     {
-        $user = User::where('email',$email)->first();
+        $user = User::where('email', $email)->first();
         $user->HOTEN = $request->HOTEN;
         $user->SDT = $request->SDT;
-        $user->password = bcrypt($request->password);
+        $user->password = encrypt($request->password);
         $user->save();
 
         return json_encode($user);
     }
 
-    public function upload(Request $request,$email)
+    public function upload(Request $request, $email)
     {
-        $user = User::where('email',$email)->first();
+        $user = User::where('email', $email)->first();
         $user->HINHANH = $request->file('HINHANH');
-        if($request->hasFile('HINHANH')){
-            $new_name=rand().'.'.$user->HINHANH->getClientOriginalExtension();
-            $user->HINHANH->move(public_path('/uploads'),$new_name);
-            $user->HINHANH =$new_name;
+        if ($request->hasFile('HINHANH')) {
+            $new_name = rand() . '.' . $user->HINHANH->getClientOriginalExtension();
+            $user->HINHANH->move(public_path('/uploads'), $new_name);
+            $user->HINHANH = $new_name;
             $user->save();
             return response()->json($new_name);
-        }else{
+        } else {
             return response()->json('image null');
         }
     }

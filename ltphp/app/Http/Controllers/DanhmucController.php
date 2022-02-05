@@ -4,21 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\danhmuc;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
+
 class DanhmucController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected function fixImage(danhmuc $danhmuc)
+    {
+        if (Storage::disk('public')->exists($danhmuc->HINHANH)) {
+            $danhmuc->HINHANH = Storage::url($danhmuc->HINHANH);
+        } else {
+            $danhmuc->HINHANH = '/uploads/NoImage.jpg';
+        }
+    }
+
     public function index()
     {
-        $lstdanhmuc = DB::table('danhmucs')
-        ->select('*')
-        ->get();
-        return view('home.danhmuc',[
-            'lstdanhmuc'=>$lstdanhmuc
+        $lstdanhmuc = danhmuc::all();
+        foreach ($lstdanhmuc as $danhmuc) {
+            $this->fixImage($danhmuc);
+        }
+        return view('home.danhmuc', [
+            'lstdanhmuc' => $lstdanhmuc
         ]);
     }
 
@@ -29,7 +36,7 @@ class DanhmucController extends Controller
      */
     public function create()
     {
-        //
+        return view('home.screendanhmuc.screenthemdanhmuc');
     }
 
     /**
@@ -40,7 +47,27 @@ class DanhmucController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate(
+            [
+                'tendanhmuc' => 'required',
+                'HINHANH' => 'required',
+            ],
+            [
+                'tendanhmuc.required' => 'Tên Danh Mục Không Được Bỏ Trống',
+                'HINHANH.required' => 'Hình Ảnh Không Được Bỏ Trống',
+            ]
+        );
+        $danhmuc = new danhmuc;
+        $danhmuc->fill([
+            'TENDANHMUC' => $request->input('tendanhmuc'),
+            'HINHANH' => '',
+        ]);
+        $danhmuc->save();
+        if ($request->hasFile('HINHANH')) {
+            $danhmuc->HINHANH = $request->file('HINHANH')->store('images/danhmuc/', 'public');
+        }
+        $danhmuc->save();
+        return Redirect::route('danhmuc.index', ['danhmuc' => $danhmuc]);
     }
 
     /**
@@ -62,7 +89,8 @@ class DanhmucController extends Controller
      */
     public function edit(danhmuc $danhmuc)
     {
-        //
+        $this->fixImage($danhmuc);
+        return view('home.screendanhmuc.screensuadanhmuc', ['danhmuc' => $danhmuc]);
     }
 
     /**
@@ -74,7 +102,22 @@ class DanhmucController extends Controller
      */
     public function update(Request $request, danhmuc $danhmuc)
     {
-        //
+        $validatedData = $request->validate(
+            [
+                'tendanhmuc' => 'required',
+            ],
+            [
+                'tendanhmuc.required' => 'Tên Danh Mục Không Được Bỏ Trống',
+            ]
+        );
+        if ($request->hasFile('HINHANH')) {
+            $danhmuc->HINHANH = $request->file('HINHANH')->store('images/danhmuc/', 'public');
+        }
+        $danhmuc->fill([
+            'TENDANHMUC' => $request->input('tendanhmuc'),
+        ]);
+        $danhmuc->save();
+        return Redirect::route('danhmuc.index', ['danhmuc' => $danhmuc]);
     }
 
     /**
@@ -85,6 +128,7 @@ class DanhmucController extends Controller
      */
     public function destroy(danhmuc $danhmuc)
     {
-        //
+        $danhmuc->delete();
+        return Redirect::route('danhmuc.index');
     }
 }

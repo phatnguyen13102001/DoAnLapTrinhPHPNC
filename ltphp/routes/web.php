@@ -22,17 +22,17 @@ use App\Http\Controllers\YeuthichController;
 |
 */
 
-Route::resource('/taikhoan',TaikhoanController::class);
+Route::resource('/taikhoan', TaikhoanController::class);
+Route::resource('/tinhthanh', TinhthanhController::class);
+Route::resource('/mien', MienController::class);
+Route::resource('/danhmuc', DanhmucController::class);
+Route::resource('/baiviet', BaivietController::class);
 
-Route::get('mien', [MienController::class,'index']);
-Route::get('danhmuc', [DanhmucController::class,'index']);
-Route::get('diadanh', [DiadanhController::class,'index']);
-Route::get('baiviet', [BaivietController::class,'index']);
-Route::get('binhluan', [BinhluanController::class,'index']);
-Route::get('luotthich', [LuotthichController::class,'index']);
-Route::get('luotxem', [LuotxemController::class,'index']);
-Route::get('yeuthich', [YeuthichController::class,'index']);
-Route::get('/tinhthanh', [TinhthanhController::class,'index']);
+Route::get('diadanh', [DiadanhController::class, 'index']);
+Route::get('binhluan', [BinhluanController::class, 'index']);
+Route::get('luotthich', [LuotthichController::class, 'index']);
+Route::get('luotxem', [LuotxemController::class, 'index']);
+Route::get('yeuthich', [YeuthichController::class, 'index']);
 Route::get('login', function () {
   return view('login.login');
 });
@@ -41,22 +41,4 @@ Route::get('screenthemdiadanh', function () {
 });
 Route::get('screensuadiadanh', function () {
   return view('home.screendiadanh.screensuadiadanh');
-});
-Route::get('screenthemdanhmuc', function () {
-  return view('home.screendanhmuc.screenthemdanhmuc');
-});
-Route::get('screensuadanhmuc', function () {
-  return view('home.screendanhmuc.screensuadanhmuc');
-});
-Route::get('screenthemtinhthanh', function () {
-  return view('home.screentinhthanh.screenthemtinhthanh');
-});
-Route::get('screensuatinhthanh', function () {
-  return view('home.screentinhthanh.screensuatinhthanh');
-});
-Route::get('screenthemmien', function () {
-  return view('home.screenmien.screenthemmien');
-});
-Route::get('screensuamien', function () {
-  return view('home.screenmien.screensuamien');
 });

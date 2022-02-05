@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,19 +11,19 @@ class TaikhoanController extends Controller
 {
     protected function fixImage(User $taikhoan)
     {
-        if(Storage::disk('public')->exists($taikhoan->HINHANH)){
-            $taikhoan->HINHANH =Storage::url($taikhoan->HINHANH);
-        } else{
-            $taikhoan->HINHANH ='/uploads/NoImage.jpg';
+        if (Storage::disk('public')->exists($taikhoan->HINHANH)) {
+            $taikhoan->HINHANH = Storage::url($taikhoan->HINHANH);
+        } else {
+            $taikhoan->HINHANH = '/uploads/NoImage.jpg';
         }
     }
     public function index()
     {
-        $lstTaiKhoan =User::all();
-        foreach($lstTaiKhoan as $taikhoan){
+        $lstTaiKhoan = User::all();
+        foreach ($lstTaiKhoan as $taikhoan) {
             $this->fixImage($taikhoan);
         }
-        return view('home.taikhoan',['lstTaiKhoan'=>$lstTaiKhoan]);
+        return view('home.taikhoan', ['lstTaiKhoan' => $lstTaiKhoan]);
     }
 
     /**
@@ -45,29 +44,41 @@ class TaikhoanController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'email' => '|email|unique:users',
-        ],[
-            'email.email'=>'Email Không Đúng Định Dạng',
-            'email.unique'=>'Email Đã Tồn Tại',
-        ]
-    );
+        $validatedData = $request->validate(
+            [
+                'hoten' => 'required',
+                'email' => 'required|unique:users|email',
+                'matkhau' => 'required',
+                'sodienthoai' => 'required|regex:/(01)[0-9]{9}/',
+                'HINHANH' => 'required',
+            ],
+            [
+                'hoten.required' => 'Họ Tên Không Được Bỏ Trống',
+                'email.required' => 'Email Không Được Bỏ Trống',
+                'email.email' => 'Email Không Đúng Định Dạng',
+                'email.unique' => 'Email Đã Tồn Tại',
+                'matkhau.required' => 'Mật Khẩu Không Được Bỏ Trống',
+                'sodienthoai.required' => 'Số Điện Thoại Không Được Bỏ Trống',
+                'sodienthoai.regex' => 'Số Điện Thoại Không Hợp Lệ',
+                'HINHANH.required' => 'Hình Ảnh Không Được Bỏ Trống',
+            ]
+        );
 
         $taikhoan = new User;
         $taikhoan->fill([
-            'HOTEN'=>$request->input('hoten'),
-            'email'=>$request->input('email'),
-            'password'=>bcrypt($request->input('matkhau')),
-            'SDT'=>$request->input('sodienthoai'),
-            'HINHANH'=>'',
-            'QUYEN'=>$request->input('phanquyen'),
+            'HOTEN' => $request->input('hoten'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('matkhau')),
+            'SDT' => $request->input('sodienthoai'),
+            'HINHANH' => '',
+            'QUYEN' => $request->input('phanquyen'),
         ]);
         $taikhoan->save();
-        if($request->hasFile('HINHANH')){
-            $taikhoan->HINHANH =$request->file('HINHANH')->store('images/avatar/','public');
+        if ($request->hasFile('HINHANH')) {
+            $taikhoan->HINHANH = $request->file('HINHANH')->store('images/avatar/', 'public');
         }
         $taikhoan->save();
-        return Redirect::route('taikhoan.index',['taikhoan'=>$taikhoan]);
+        return Redirect::route('taikhoan.index', ['taikhoan' => $taikhoan]);
     }
 
     /**
@@ -79,7 +90,7 @@ class TaikhoanController extends Controller
     public function edit(User $taikhoan)
     {
         $this->fixImage($taikhoan);
-        return view('home.screentaikhoan.screensuataikhoan',['taikhoan'=>$taikhoan]);
+        return view('home.screentaikhoan.screensuataikhoan', ['taikhoan' => $taikhoan]);
     }
 
     /**
@@ -91,19 +102,29 @@ class TaikhoanController extends Controller
      */
     public function update(Request $request, User $taikhoan)
     {
-        if($request->hasFile('HINHANH'))
-        {
-            $taikhoan->HINHANH =$request->file('HINHANH')->store('images/avatar/','public');
+        $validatedData = $request->validate(
+            [
+                'hoten' => 'required',
+                'matkhau' => 'required',
+                'sodienthoai' => 'required',
+            ],
+            [
+                'hoten.required' => 'Họ Tên Không Được Bỏ Trống',
+                'matkhau.required' => 'Mật Khẩu Không Được Bỏ Trống',
+                'sodienthoai.required' => 'Số Điện Thoại Không Được Bỏ Trống',
+            ]
+        );
+        if ($request->hasFile('HINHANH')) {
+            $taikhoan->HINHANH = $request->file('HINHANH')->store('images/avatar/', 'public');
         }
         $taikhoan->fill([
-            'HOTEN'=>$request->input('hoten'),
-            'email'=>$request->input('email'),
-            'password'=>bcrypt($request->input('matkhau')),
-            'SDT'=>$request->input('sodienthoai'),
-            'QUYEN'=>$request->input('phanquyen'),
+            'HOTEN' => $request->input('hoten'),
+            'password' => bcrypt($request->input('matkhau')),
+            'SDT' => $request->input('sodienthoai'),
+            'QUYEN' => $request->input('phanquyen'),
         ]);
         $taikhoan->save();
-        return Redirect::route('taikhoan.index',['taikhoan'=>$taikhoan]);
+        return Redirect::route('taikhoan.index', ['taikhoan' => $taikhoan]);
     }
 
     /**
