@@ -13,9 +13,6 @@ class Home extends Controller
     public function yeuthich(){
         return view('home.yeuthich');
     }
-    public function tinhthanh(){
-        return view('home.tinhthanh');
-    }
     public function luotxem(){
         return view('home.luotxem');
     }

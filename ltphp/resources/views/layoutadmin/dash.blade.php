@@ -155,7 +155,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
+          <li class="nav-item">
             <a href="{{route('taikhoan.index')}}" class="nav-link ">
             <i class="fas fa-user"></i>
               <p>
@@ -164,7 +164,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{url('tinhthanh')}}" class="nav-link">
+            <a href="{{route('tinhthanh.index')}}" class="nav-link">
             <i class="fas fa-city"></i>
               <p>
                 Quản Lý Tỉnh Thành

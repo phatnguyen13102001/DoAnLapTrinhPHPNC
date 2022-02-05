@@ -4,15 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class tinhthanh extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
     protected $table="tinhthanhs";
 
     protected $fillable = [
-        'ID_TINH',
         'ID_MIEN',
         'TENTINH',
     ];
@@ -24,6 +23,6 @@ class tinhthanh extends Model
 
     public function mien()
     {
-        return $this->belongsTo('App\Models\mien','ID_MIEN','ID_TINHTHANH');
+        return $this->belongsTo('App\Models\mien','ID_MIEN','id');
     }
 }

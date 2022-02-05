@@ -4,10 +4,11 @@
 <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-          <h1 style="text-align:center;font-weight:bold;">QUẢN LÝ DANH MỤC</h1>
-            <div class="col-sm-6">
-            <a href="{{url('screenthemdanhmuc')}}"> <button style="background-color:#00cc00;" type="button" class="btn btn-outline-success ">Thêm</button></a>
+          <div class="col-sm-12">
+            <h1 style="text-align:center;font-weight:bold;">QUẢN LÝ DANH MỤC</h1>
+            <div class="col-sm-6" >
+            <a href=""> <button style="background-color:#00cc00;" type="button" class="btn btn-outline-success">Thêm</button></a>
+            </ol>
           </div>
           </div>
         </div>
@@ -16,8 +17,9 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-                  <table class="table table-striped">
-                    <thead>
+                <div class="table-responsive">
+                  <table class="table table-light" >
+                    <thead class="thead thead-dark" >
                     <tr>
                       <th>Id</th>
                       <th>Ten Danh Muc</th>
@@ -33,7 +35,7 @@
                     <tr>
                       <td>{{$danhmuc->id}}</td>
                       <td>{{$danhmuc->TENDANHMUC}}</td>
-                      <td>{{$danhmuc->HINHANH}}</td>
+                      <td><img style="width:100px; max-height:100px; object-fit:contain" src="{{$danhmuc->HINHANH}}"></td>
                       <td>{{$danhmuc->created_at}}</td>
                       <td>{{$danhmuc->updated_at}}</td>
                       <td>{{$danhmuc->deleted_at}}</td>
@@ -45,6 +47,7 @@
                     </tbody>
                     @endforeach
                   </table>
+                </div>
             <!-- /.invoice -->
           </div><!-- /.col -->
         </div><!-- /.row -->
