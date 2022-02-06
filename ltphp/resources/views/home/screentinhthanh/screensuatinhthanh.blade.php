@@ -1,36 +1,39 @@
 @extends('layoutadmin.dash')
 @section('section')
-<div class="content-wrapper" >
-<section class="content-header">
-<div class="container">
-<h3 style="color:red;">Sửa Tỉnh Thành</h3>
-    <div class="row">
-    <form method="post" action="{{route('tinhthanh.update',['tinhthanh'=>$tinhthanh])}}" enctype="multipart/form-data">
-    @csrf
-    @method('PATCH')
-            <div class="form-group">
-                <label for="exampleFormControlInput1" class="form-label">Tên tỉnh thành</label>
-                <input type="text" class="form-control" value="{{$tinhthanh->TENTINH}}" id="tentinh" name="tentinh" placeholder="Tên địa danh">
-</div>
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container">
+            <h1 style="color:red; text-align:center;font-weight:bold;">CẬP NHẬP TỈNH THÀNH</h1>
+            <div class="row">
+                <div class="col-md-12">
+                    <form method="post" action="{{route('tinhthanh.update',['tinhthanh'=>$tinhthanh])}}">
+                        @csrf
+                        @method('PATCH')
+                        <div class="form-group">
+                            <label class="control-label">Tên Tỉnh Thành</label>
+                            <span style="color:red;">*</span>
+                            <input class="form-control" type="text" name="tentinh" value="{{$tinhthanh->TENTINH}}" placeholder="Nhập Tên Tỉnh Thành" />
+                            @if($errors->has('tentinh'))
+                            <div class="alert alert-danger" style="margin-top:10px;">
+                                {{$errors->first('tentinh')}}
+                            </div>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Vùng Miền</label>
+                            <select name="id_mien">
+                                @foreach($lstmien as $mien)
+                                <option value="{{$mien->id}}">{{$mien->TENMIEN}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group" style="text-align:center;">
+                            <input type="submit" value="Cập Nhập Tỉnh Thành" class="btn btn-dark" />
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="col-4">
-            <label for="exampleFormControlInput1" class="form-label">Miền</label>
-            <select name="id_mien">
-            @foreach($lstmien as $mien)
-              <option  value="{{$mien->id}}" @if ($mien->id==$tinhthanh->ID_MIEN) selected @endif>{{$mien->TENMIEN}}</option>
-            @endforeach
-            </select>
-        </div>
-        <div class="col-4">
-        <div class="align-middle text-end">
-   <button type="submit" class="btn btn-outline-success ">Sửa</button>
-   <a href="{{url('tinhthanh')}}"> <button type="button" class="btn btn-outline-danger">Hủy</button></a>
-</div>
-</div>
-    </form>
-    </div></br>
-</div>
-</div>
-</section>
+    </section>
 </div>
 @stop

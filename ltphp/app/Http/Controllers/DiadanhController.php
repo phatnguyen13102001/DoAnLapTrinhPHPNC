@@ -54,6 +54,25 @@ class DiadanhController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate(
+            [
+                'tendiadanh' => 'required',
+                'HINHANH' => 'required',
+                'diachi' => 'required',
+                'kinhdo' => 'required',
+                'vido' => 'required',
+                'mota' => 'required',
+            ],
+            [
+                'tendiadanh.required' => 'Tên Địa Danh Không Được Bỏ Trống',
+                'HINHANH.required' => 'Hình Ảnh Không Được Bỏ Trống',
+                'diachi.required' => 'Địa Chỉ Không Được Bỏ Trống',
+                'kinhdo.required' => 'Kinh Độ Không Được Bỏ Trống',
+                'vido.required' => 'Vĩ Độ Không Được Bỏ Trống',
+                'mota.required' => 'Mô Tả Không Được Bỏ Trống',
+            ]
+        );
+
         $diadanh = new diadanh;
         $diadanh->fill([
             'ID_DANHMUC' => $request->input('iddanhmuc'),
@@ -92,6 +111,7 @@ class DiadanhController extends Controller
      */
     public function edit(diadanh $diadanh)
     {
+        $this->fixImage($diadanh);
         $lstdanhmuc = danhmuc::all();
         $lsttinhthanh = tinhthanh::all();
         return view(
@@ -109,6 +129,21 @@ class DiadanhController extends Controller
      */
     public function update(Request $request, diadanh $diadanh)
     {
+        $validatedData = $request->validate(
+            [
+                'tendiadanh' => 'required',
+                'diachi' => 'required',
+                'kinhdo' => 'required',
+                'vido' => 'required',
+            ],
+            [
+                'tendiadanh.required' => 'Tên Địa Danh Không Được Bỏ Trống',
+                'diachi.required' => 'Địa Chỉ Không Được Bỏ Trống',
+                'kinhdo.required' => 'Kinh Độ Không Được Bỏ Trống',
+                'vido.required' => 'Vĩ Độ Không Được Bỏ Trống',
+            ]
+        );
+
         if ($request->hasFile('HINHANH')) {
             $diadanh->HINHANH = $request->file('HINHANH')->store('images/diadanh/', 'public');
         }

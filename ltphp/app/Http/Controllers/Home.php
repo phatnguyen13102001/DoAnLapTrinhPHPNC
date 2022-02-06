@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\View;
-
 class Home extends Controller
 {
     public function yeuthich()
@@ -29,13 +27,5 @@ class Home extends Controller
     public function login()
     {
         return view('login.login');
-    }
-    public function screenthemdiadanh()
-    {
-        return view('home.screendiadanh.screenthemdiadanh');
-    }
-    public function screensuadiadanh()
-    {
-        return view('home.screendiadanh.screensuadiadanh');
     }
 }

@@ -3,33 +3,34 @@
 <div class="content-wrapper">
     <section class="content-header">
         <div class="container">
-            <h3 style="color:red;">Thêm Tỉnh Thành</h3>
+            <h1 style="color:red; text-align:center;font-weight:bold;">THÊM TỈNH THÀNH</h1>
             <div class="row">
-                <form method="post" action="{{route('tinhthanh.store')}}" enctype="multipart/form-data">
-                    @csrf
-                    <div class="col-4">
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Tên tỉnh thành</label>
-                            <input type="text" class="form-control" id="tentinh" name="tentinh" placeholder="Tên tỉnh thành">
+                <div class="col-md-12">
+                    <form method="post" action="{{route('tinhthanh.store')}}">
+                        @csrf
+                        <div class="form-group">
+                            <label class="control-label">Tên Tỉnh Thành</label>
+                            <span style="color:red;">*</span>
+                            <input class="form-control" type="text" name="tentinh" placeholder="Nhập Tên Tỉnh Thành" />
+                            @if($errors->has('tentinh'))
+                            <div class="alert alert-danger" style="margin-top:10px;">
+                                {{$errors->first('tentinh')}}
+                            </div>
+                            @endif
                         </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="col-3">
-
+                        <div class="form-group">
+                            <label class="form-label">Vùng Miền</label>
                             <select name="id_mien">
-                                <option> chọn miền</option>
                                 @foreach($lstmien as $mien)
                                 <option value="{{$mien->id}}">{{$mien->TENMIEN}}</option>
                                 @endforeach
                             </select>
-
                         </div>
-                    </div></br>
-                    <div class="align-middle text-end">
-                        <button type="submit" class="btn btn-outline-success ">Thêm</button>
-                        <a href="{{url('tinhthanh')}}"> <button type="button" class="btn btn-outline-danger">Hủy</button></a>
-                    </div>
-                </form>
+                        <div class="form-group" style="text-align:center;">
+                            <input type="submit" value="Thêm Tỉnh Thành" class="btn btn-dark" />
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>

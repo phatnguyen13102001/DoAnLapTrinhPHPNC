@@ -26,7 +26,7 @@
                         <div class="form-group">
                             <label class="control-label">Mật Khẩu</label>
                             <span style="color:red;">*</span>
-                            <input class="form-control" type="text" name="matkhau" value="{{$taikhoan->password}}" placeholder="Nhập Mật Khẩu" />
+                            <input class="form-control" type="password" name="matkhau" value="{{$taikhoan->password}}" placeholder="Nhập Mật Khẩu" />
                             @if($errors->has('matkhau'))
                             <div class="alert alert-danger" style="margin-top:10px;">
                                 {{$errors->first('matkhau')}}
@@ -51,7 +51,7 @@
                                 {{$errors->first('HINHANH')}}
                             </div>
                             @endif
-                            <img style="width:100px; max-height:100px; object-fit:contain" src="{{$taikhoan->HINHANH}}">
+                            <img style="width:200px; max-height:200px; object-fit:contain; margin-top:20px;" src="{{$taikhoan->HINHANH}}">
                         </div>
                         <div class="form-group">
                             <label class="form-label">Phân Quyền</label>

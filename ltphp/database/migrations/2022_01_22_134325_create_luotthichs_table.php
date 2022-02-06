@@ -13,7 +13,7 @@ class CreateLuotthichsTable extends Migration
      */
     public function up()
     {
-        Schema::create('luotthichs', function (Blueprint $table) {
+        Schema::create('luotthiches', function (Blueprint $table) {
             $table->increments('ID_LUOTTHICH');
             $table->boolean('TRANTHAI');
             $table->timestamps();

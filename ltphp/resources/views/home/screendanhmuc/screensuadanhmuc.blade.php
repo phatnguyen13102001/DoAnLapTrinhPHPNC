@@ -22,7 +22,7 @@
             <div class="form-group">
               <label class="control-label">Hình Ảnh</label>
               <input accept="*.jpg,*.png" type="file" id="ful_hinhanh" name="HINHANH" class="form-control" />
-              <img style="width:100px; max-height:100px; object-fit:contain" src="{{$danhmuc->HINHANH}}">
+              <img style="width:200px; max-height:200px; object-fit:contain; margin-top:20px;" src="{{$danhmuc->HINHANH}}">
             </div>
             <div class="form-group" style="text-align:center;">
               <input type="submit" value="Cập Nhập Danh Mục" class="btn btn-dark" />

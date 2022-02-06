@@ -47,6 +47,17 @@ class MienController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate(
+            [
+                'tenmien' => 'required',
+                'HINHANH' => 'required',
+            ],
+            [
+                'tenmien.required' => 'Tên Vùng Miền Không Được Bỏ Trống',
+                'HINHANH.required' => 'Hình Ảnh Không Được Bỏ Trống',
+            ]
+        );
+
         $mien = new mien;
         $mien->fill([
             'TENMIEN' => $request->input('tenmien'),
@@ -79,9 +90,8 @@ class MienController extends Controller
      */
     public function edit(mien $mien)
     {
-        return view('home.screenmien.screensuamien', [
-            'mien' => $mien
-        ]);
+        $this->fixImage($mien);
+        return view('home.screenmien.screensuamien', ['mien' => $mien]);
     }
 
     /**
@@ -93,6 +103,15 @@ class MienController extends Controller
      */
     public function update(Request $request, mien $mien)
     {
+        $validatedData = $request->validate(
+            [
+                'tenmien' => 'required',
+            ],
+            [
+                'tenmien.required' => 'Tên Vùng Miền Không Được Bỏ Trống',
+            ]
+        );
+
         if ($request->hasFile('HINHANH')) {
             $mien->HINHANH = $request->file('HINHANH')->store('images/mien/', 'public');
         }

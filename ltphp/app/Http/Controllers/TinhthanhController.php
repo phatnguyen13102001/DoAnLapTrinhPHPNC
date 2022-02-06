@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\mien;
 use App\Models\tinhthanh;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Storage;
 
 class TinhthanhController extends Controller
 {
@@ -43,6 +41,15 @@ class TinhthanhController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate(
+            [
+                'tentinh' => 'required',
+            ],
+            [
+                'tentinh.required' => 'Tên Tỉnh Thành Không Được Bỏ Trống',
+            ]
+        );
+
         $tinhthanh = new tinhthanh;
         $tinhthanh->fill([
             'ID_MIEN' => $request->input('id_mien'),
@@ -87,6 +94,15 @@ class TinhthanhController extends Controller
      */
     public function update(Request $request, tinhthanh $tinhthanh)
     {
+        $validatedData = $request->validate(
+            [
+                'tentinh' => 'required',
+            ],
+            [
+                'tentinh.required' => 'Tên Tỉnh Thành Không Được Bỏ Trống',
+            ]
+        );
+
         $tinhthanh->fill([
             'ID_MIEN' => $request->input('id_mien'),
             'TENTINH' => $request->input('tentinh'),
