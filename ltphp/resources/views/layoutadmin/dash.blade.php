@@ -123,11 +123,16 @@
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-sign-out-alt" style='font-size:18px'></i>
-        </a>
-      </li>
+      @auth
+        
+        <li class="nav-item">
+          <a href="{{route('logout')}}">
+          @csrf
+        <i class="fas fa-sign-out-alt" style='font-size:18px'></i>
+          
+          </a>
+        </li>
+        @endauth
     </ul>
   </nav>
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -145,7 +150,9 @@
           <img src="{{ asset('AdminLTE-3.2.0-rc/dist/img/user8.png')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Phát Nguyễn</a>
+          
+          <a href="#" class="d-block"> {{Auth::user()->HOTEN}}</a>
+         
         </div>
       </div>
 
