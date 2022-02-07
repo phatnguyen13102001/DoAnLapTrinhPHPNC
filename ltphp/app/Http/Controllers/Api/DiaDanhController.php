@@ -18,21 +18,21 @@ class DiaDanhController extends Controller
      */
     public function ShowSiteByProvince($id)
     {
-        $diadanh = DB::table('diadanhs')->where('ID_TINH',$id)->get();
+        $diadanh = DB::table('diadanhs')->where('ID_TINH', $id)->Where('deleted_at', '=', null)->get();
         $response['DiaDanh'] =  $diadanh;
         return json_encode($response);
     }
 
     public function ShowSiteByCategory($id)
     {
-        $diadanh = DB::table('diadanhs')->where('ID_DANHMUC',$id)->get();
+        $diadanh = DB::table('diadanhs')->where('ID_DANHMUC', $id)->Where('deleted_at', '=', null)->get();
         $response['DiaDanh'] =  $diadanh;
         return json_encode($response);
     }
 
     public function ShowSiteByIDSite($id)
     {
-        $diadanh = DB::table('diadanhs')->where('id',$id)->get();
+        $diadanh = DB::table('diadanhs')->where('id', $id)->Where('deleted_at', '=', null)->get();
         $response['DiaDanh'] =  $diadanh;
         return json_encode($response);
     }

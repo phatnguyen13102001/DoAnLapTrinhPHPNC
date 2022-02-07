@@ -46,11 +46,8 @@ class UserController extends Controller
         $user = User::where('email', $email)->first();
         $user->HINHANH = $request->file('HINHANH');
         if ($request->hasFile('HINHANH')) {
-            $new_name = rand() . '.' . $user->HINHANH->getClientOriginalExtension();
-            $user->HINHANH->move(public_path('/uploads'), $new_name);
-            $user->HINHANH = $new_name;
-            $user->save();
-            return response()->json($new_name);
+            $user->HINHANH = $request->file('HINHANH')->store('images/avatar/', 'public');
+            return response()->json('has image');
         } else {
             return response()->json('image null');
         }

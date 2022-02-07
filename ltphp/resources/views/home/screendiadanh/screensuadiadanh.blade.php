@@ -89,7 +89,7 @@
                                 <textarea class="form-control" id="mota" name="mota" rows="3">{{$diadanh->MOTA}}</textarea>
                             </div>
                             <div class="form-group" style="text-align:center;">
-                                <input type="submit" value="Thêm Địa Danh" class="btn btn-dark" />
+                                <input type="submit" value="Cập Nhật Địa Danh" class="btn btn-dark" />
                             </div>
                         </div>
                     </form>

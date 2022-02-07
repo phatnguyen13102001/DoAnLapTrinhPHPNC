@@ -16,7 +16,7 @@ class DiadanhController extends Controller
         if (Storage::disk('public')->exists($diadanh->HINHANH)) {
             $diadanh->HINHANH = Storage::url($diadanh->HINHANH);
         } else {
-            $diadanh->HINHANH = '/uploads/NoImage.jpg';
+            $diadanh->HINHANH = '/Images/NoImage.jpg';
         }
     }
     public function index()

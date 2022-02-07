@@ -14,7 +14,7 @@ class TaikhoanController extends Controller
         if (Storage::disk('public')->exists($taikhoan->HINHANH)) {
             $taikhoan->HINHANH = Storage::url($taikhoan->HINHANH);
         } else {
-            $taikhoan->HINHANH = '/uploads/NoImage.jpg';
+            $taikhoan->HINHANH = '/Images/NoImage.jpg';
         }
     }
     public function index()

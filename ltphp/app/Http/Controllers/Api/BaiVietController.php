@@ -55,6 +55,7 @@ class BaiVietController extends Controller
             ->join('diadanhs', 'ID_DIADANH', '=', 'diadanhs.id')
             ->select('users.HOTEN', 'users.HINHANH as HINHANHTK', 'diadanhs.TENDIADANH', 'baiviets.NOIDUNG', 'baiviets.HINHANH', 'baiviets.id', 'users.id', 'diadanhs.id')
             ->where('baiviets.ID_DIADANH', $id)
+            ->Where('deleted_at', '=', null)
             ->get();
         $response['BaiViet'] =  $baiviet;
         return json_encode($response);

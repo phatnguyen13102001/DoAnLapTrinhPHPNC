@@ -14,7 +14,7 @@ class DanhmucController extends Controller
         if (Storage::disk('public')->exists($danhmuc->HINHANH)) {
             $danhmuc->HINHANH = Storage::url($danhmuc->HINHANH);
         } else {
-            $danhmuc->HINHANH = '/uploads/NoImage.jpg';
+            $danhmuc->HINHANH = '/Images/NoImage.jpg';
         }
     }
 

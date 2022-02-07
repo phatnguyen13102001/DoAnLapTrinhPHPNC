@@ -14,7 +14,7 @@ class MienController extends Controller
         if (Storage::disk('public')->exists($mien->HINHANH)) {
             $mien->HINHANH = Storage::url($mien->HINHANH);
         } else {
-            $mien->HINHANH = '/uploads/NoImage.jpg';
+            $mien->HINHANH = '/Images/NoImage.jpg';
         }
     }
     public function index()
