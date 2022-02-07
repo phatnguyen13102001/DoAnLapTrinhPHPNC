@@ -21,7 +21,7 @@
             <colgroup>
               <col width="10" span="1">
               <col width="150" span="2">
-              <col width="200" span="1">
+              <col width="150" span="1">
               <col width="100" span="4">
             </colgroup>
             <thead class="thead thead-dark">

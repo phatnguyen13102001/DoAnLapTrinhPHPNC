@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
-
 class TaikhoanController extends Controller
 {
     protected function fixImage(User $taikhoan)

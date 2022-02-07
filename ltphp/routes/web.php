@@ -11,6 +11,8 @@ use App\Http\Controllers\BinhluanController;
 use App\Http\Controllers\LuotthichController;
 use App\Http\Controllers\LuotxemController;
 use App\Http\Controllers\YeuthichController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,21 +23,23 @@ use App\Http\Controllers\YeuthichController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::resource('/taikhoan', TaikhoanController::class);
-Route::resource('/tinhthanh', TinhthanhController::class);
-Route::resource('/mien', MienController::class);
-Route::resource('/danhmuc', DanhmucController::class);
-Route::resource('/baiviet', BaivietController::class);
-Route::resource('/diadanh', DiadanhController::class);
-Route::get('binhluan', [BinhluanController::class, 'index']);
-Route::get('luotthich', [LuotthichController::class, 'index']);
-Route::get('luotxem', [LuotxemController::class, 'index']);
-Route::get('yeuthich', [YeuthichController::class, 'index']);
-Route::get('binhluan', [BinhluanController::class, 'index']);
-Route::get('luotthich', [LuotthichController::class, 'index']);
-Route::get('luotxem', [LuotxemController::class, 'index']);
-Route::get('yeuthich', [YeuthichController::class, 'index']);
-Route::get('/', function () {
-  return view('login.login');
+Route::middleware('auth')->group(function(){
+  Route::resource('/taikhoan', TaikhoanController::class);
+  Route::resource('/tinhthanh', TinhthanhController::class);
+  Route::resource('/mien', MienController::class);
+  Route::resource('/danhmuc', DanhmucController::class);
+  Route::resource('/baiviet', BaivietController::class);
+  Route::resource('/diadanh', DiadanhController::class);
+  Route::get('binhluan', [BinhluanController::class, 'index']);
+  Route::get('luotthich', [LuotthichController::class, 'index']);
+  Route::get('luotxem', [LuotxemController::class, 'index']);
+  Route::get('yeuthich', [YeuthichController::class, 'index']);
+  Route::get('binhluan', [BinhluanController::class, 'index']);
+  Route::get('luotthich', [LuotthichController::class, 'index']);
+  Route::get('luotxem', [LuotxemController::class, 'index']);
+  Route::get('yeuthich', [YeuthichController::class, 'index']);
+  Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+  
 });
+Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::post('/', [LoginController::class, 'authenticate'])->name('login');
