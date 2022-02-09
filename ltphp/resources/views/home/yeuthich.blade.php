@@ -29,9 +29,13 @@
             <tbody>
               <tr>
                 <td>{{$yeuthich->id}}</td>
-                <td>{{$yeuthich->ID_NGUOITHICH}}</td>
-                <td>{{$yeuthich->ID_DIADANH}}</td>
-                <td>{{$yeuthich->TRANGTHAI}}</td>
+                <td>{{$yeuthich->taikhoan->HOTEN}}</td>
+                <td>{{$yeuthich->diadanh->TENDIADANH}}</td>
+                @if($yeuthich->TRANGTHAI == 1)
+                <td>Đã Thích</td>
+                @elseif ($yeuthich->TRANGTHAI == 0)
+                <td>Bỏ Thích</td>
+                @endif
                 <td>{{$yeuthich->created_at}}</td>
                 <td>{{$yeuthich->updated_at}}</td>
               </tr>

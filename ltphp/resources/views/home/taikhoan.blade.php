@@ -38,7 +38,11 @@
               <td>{{$taikhoan->email}}</td>
               <td>secret</td>
               <td>{{$taikhoan->SDT}}</td>
-              <td>{{$taikhoan->QUYEN}}</td>
+              @if($taikhoan->QUYEN == 1)
+              <td>Admin</td>
+              @elseif ($taikhoan->QUYEN == 2)
+              <td>Người Dùng</td>
+              @endif
               <td>
                 <form method="post" action="{{route('taikhoan.destroy',['taikhoan'=>$taikhoan])}}">
                   @csrf

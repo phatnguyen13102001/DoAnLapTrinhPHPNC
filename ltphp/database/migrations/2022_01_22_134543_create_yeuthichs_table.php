@@ -13,8 +13,10 @@ class CreateYeuthichsTable extends Migration
      */
     public function up()
     {
-        Schema::create('yeuthichs', function (Blueprint $table) {
+        Schema::create('yeuthiches', function (Blueprint $table) {
             $table->increments('ID_YEUTHICH');
+            $table->integer('ID_DIADANH');
+            $table->integer('ID_NGUOITHICH');
             $table->boolean('TRANGTHAI');
             $table->timestamps();
             $table->SoftDeletes();
@@ -28,6 +30,6 @@ class CreateYeuthichsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('yeuthichs');
+        Schema::dropIfExists('yeuthiches');
     }
 }

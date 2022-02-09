@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+
 class TaikhoanController extends Controller
 {
     protected function fixImage(User $taikhoan)
@@ -48,7 +49,7 @@ class TaikhoanController extends Controller
                 'hoten' => 'required',
                 'email' => 'required|unique:users|email',
                 'matkhau' => 'required',
-                'sodienthoai' => 'required|regex:/(01)[0-9]{9}/',
+                'sodienthoai' => 'required',
                 'HINHANH' => 'required',
             ],
             [
@@ -58,7 +59,6 @@ class TaikhoanController extends Controller
                 'email.unique' => 'Email Đã Tồn Tại',
                 'matkhau.required' => 'Mật Khẩu Không Được Bỏ Trống',
                 'sodienthoai.required' => 'Số Điện Thoại Không Được Bỏ Trống',
-                'sodienthoai.regex' => 'Số Điện Thoại Không Hợp Lệ',
                 'HINHANH.required' => 'Hình Ảnh Không Được Bỏ Trống',
             ]
         );

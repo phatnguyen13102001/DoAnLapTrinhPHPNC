@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\DiaDanhController;
 use App\Http\Controllers\Api\DanhMucController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\BaiVietController;
+use App\Http\Controllers\Api\YeuThichController;
+use App\Http\Controllers\Api\BinhLuanController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,8 +27,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //Api Đăng Ký Đăng Nhập
-Route::post('/dangnhap',[AuthController::class, 'login']);
-Route::post('/dangky',[AuthController::class, 'register']);
+Route::post('/dangnhap', [AuthController::class, 'login']);
+Route::post('/dangky', [AuthController::class, 'register']);
 
 //Api Miền
 Route::get('/vungmien', [MienController::class, 'index']);
@@ -61,5 +63,29 @@ Route::post('/thembaiviet', [BaiVietController::class, 'InsertPost']);
 //Api Bài Viết Theo Địa Danh
 Route::get('/baiviettheodiadanh/{id}', [BaiVietController::class, 'ShowPostByIDSite']);
 
+//Api Bài Viết Theo Người Dùng
+Route::get('/baiviettheonguoidung/{id}', [BaiVietController::class, 'ShowPostByIDUser']);
 
+//Api Bài Viết Theo ID Địa Danh
+Route::get('/chitietbaiviet/{id}', [BaiVietController::class, 'ShowPostByIDPost']);
 
+//Api Tất Cả Bài Viết
+Route::get('/tatcabaiviet', [BaiVietController::class, 'ShowAllPost']);
+
+//Api Xử Lí Yêu Thích
+Route::get('/xuliyeuthich/{id1}/{id2}', [YeuThichController::class, 'favorite_handle']);
+
+//Api Yêu Thích Theo Địa Danh
+Route::get('/yeuthichtheodiadanh/{id}', [YeuThichController::class, 'ShowFavoriteBySite']);
+
+//Api Yêu Thích Theo User
+Route::get('/yeuthichtheouser/{id}', [YeuThichController::class, 'ShowFavoriteByIDUser']);
+
+//Api Trạng Thái Yêu Thích
+Route::get('/trangthaiyeuthich/{id1}/{id2}', [YeuThichController::class, 'ShowStatusFavorite']);
+
+//Api Địa Danh Nổi Bật
+Route::get('/diadanhnoibat', [DiaDanhController::class, 'ShowHotSite']);
+
+//Api Bình Luận Theo Bài Viết
+Route::get('/binhluan/{id}', [BinhLuanController::class, 'ShowCommentByIDPost']);

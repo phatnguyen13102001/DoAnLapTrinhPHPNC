@@ -5,9 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\baiviet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class BaivietController extends Controller
 {
+    protected function fixImage(baiviet $baiviet)
+    {
+        if (Storage::disk('public')->exists($baiviet->HINHANH)) {
+            $baiviet->HINHANH = Storage::url($baiviet->HINHANH);
+        } else {
+            $baiviet->HINHANH = '/Images/NoImage.jpg';
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,9 +25,10 @@ class BaivietController extends Controller
     public function index()
     {
         $lstbaiviet = baiviet::all();
-        return view('home.baiviet', [
-            'lstbaiviet' => $lstbaiviet
-        ]);
+        foreach ($lstbaiviet as $baiviet) {
+            $this->fixImage($baiviet);
+        }
+        return view('home.baiviet', ['lstbaiviet' => $lstbaiviet]);
     }
 
     /**

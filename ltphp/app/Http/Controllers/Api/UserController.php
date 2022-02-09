@@ -35,7 +35,7 @@ class UserController extends Controller
         $user = User::where('email', $email)->first();
         $user->HOTEN = $request->HOTEN;
         $user->SDT = $request->SDT;
-        $user->password = encrypt($request->password);
+        $user->password = bcrypt($request->password);
         $user->save();
 
         return json_encode($user);
@@ -47,6 +47,7 @@ class UserController extends Controller
         $user->HINHANH = $request->file('HINHANH');
         if ($request->hasFile('HINHANH')) {
             $user->HINHANH = $request->file('HINHANH')->store('images/avatar/', 'public');
+            $user->save();
             return response()->json('has image');
         } else {
             return response()->json('image null');

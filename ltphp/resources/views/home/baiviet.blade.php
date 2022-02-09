@@ -34,7 +34,7 @@
                 <td>{{$baiviet->taikhoan->HOTEN}}</td>
                 <td>{{$baiviet->diadanh->TENDIADANH}}</td>
                 <td>{{$baiviet->NOIDUNG}}</td>
-                <td>{{$baiviet->HINHANH}}</td>
+                <td><img style="width:100px; max-height:100px; object-fit:contain" src="{{$baiviet->HINHANH}}"></td>
                 <td>{{$baiviet->created_at}}</td>
                 <td>{{$baiviet->updated_at}}</td>
                 <td>

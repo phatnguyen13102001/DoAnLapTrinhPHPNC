@@ -15,6 +15,8 @@ class CreateBinhluansTable extends Migration
     {
         Schema::create('binhluans', function (Blueprint $table) {
             $table->increments('ID_BINHLUAN');
+            $table->integer('ID_BAIVIET');
+            $table->integer('ID_NGUOIBL');
             $table->string('NOIDUNG');
             $table->timestamps();
             $table->SoftDeletes();

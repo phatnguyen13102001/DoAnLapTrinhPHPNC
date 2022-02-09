@@ -15,6 +15,8 @@ class CreateBaivietsTable extends Migration
     {
         Schema::create('baiviets', function (Blueprint $table) {
             $table->increments('ID_BAIVIET');
+            $table->integer('ID_NGUOIDANG');
+            $table->integer('ID_DIADANH');
             $table->string('NOIDUNG');
             $table->string('HINHANH');
             $table->timestamps();

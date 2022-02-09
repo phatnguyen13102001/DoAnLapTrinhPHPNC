@@ -23,9 +23,7 @@ class BaiVietController extends Controller
         $baiviet->NOIDUNG = $request->NOIDUNG;
         $baiviet->HINHANH = $request->file('HINHANH');
         if ($request->hasFile('HINHANH')) {
-            $new_name = rand() . '.' . $baiviet->HINHANH->getClientOriginalExtension();
-            $baiviet->HINHANH->move(public_path('/uploads'), $new_name);
-            $baiviet->HINHANH = $new_name;
+            $baiviet->HINHANH = $request->file('HINHANH')->store('images/baiviet/', 'public');
         } else {
             return response()->json('image null');
         }
@@ -53,9 +51,47 @@ class BaiVietController extends Controller
         $baiviet = DB::table('baiviets')
             ->join('users', 'ID_NGUOIDANG', '=', 'users.id')
             ->join('diadanhs', 'ID_DIADANH', '=', 'diadanhs.id')
-            ->select('users.HOTEN', 'users.HINHANH as HINHANHTK', 'diadanhs.TENDIADANH', 'baiviets.NOIDUNG', 'baiviets.HINHANH', 'baiviets.id', 'users.id', 'diadanhs.id')
+            ->select('users.HOTEN', 'users.HINHANH as HINHANHTK', 'diadanhs.TENDIADANH', 'baiviets.NOIDUNG', 'baiviets.HINHANH as HINHANHBV', 'baiviets.id', 'users.id', 'diadanhs.id')
             ->where('baiviets.ID_DIADANH', $id)
-            ->Where('deleted_at', '=', null)
+            ->Where('baiviets.deleted_at', '=', null)
+            ->get();
+        $response['BaiViet'] =  $baiviet;
+        return json_encode($response);
+    }
+
+    public function ShowPostByIDUser($id)
+    {
+        $baiviet = DB::table('baiviets')
+            ->join('users', 'ID_NGUOIDANG', '=', 'users.id')
+            ->join('diadanhs', 'ID_DIADANH', '=', 'diadanhs.id')
+            ->select('users.HOTEN', 'users.HINHANH as HINHANHTK', 'diadanhs.TENDIADANH', 'baiviets.NOIDUNG', 'baiviets.HINHANH as HINHANHBV', 'baiviets.id', 'users.id', 'diadanhs.id')
+            ->where('baiviets.ID_NGUOIDANG', $id)
+            ->Where('baiviets.deleted_at', '=', null)
+            ->get();
+        $response['BaiViet'] =  $baiviet;
+        return json_encode($response);
+    }
+
+    public function ShowAllPost()
+    {
+        $baiviet = DB::table('baiviets')
+            ->join('users', 'ID_NGUOIDANG', '=', 'users.id')
+            ->join('diadanhs', 'ID_DIADANH', '=', 'diadanhs.id')
+            ->select('users.HOTEN', 'users.HINHANH as HINHANHTK', 'diadanhs.TENDIADANH', 'baiviets.NOIDUNG', 'baiviets.HINHANH as HINHANHBV', 'baiviets.id', 'users.id', 'diadanhs.id')
+            ->Where('baiviets.deleted_at', '=', null)
+            ->get();
+        $response['BaiViet'] =  $baiviet;
+        return json_encode($response);
+    }
+
+    public function ShowPostByIDPost($id)
+    {
+        $baiviet = DB::table('baiviets')
+            ->join('users', 'ID_NGUOIDANG', '=', 'users.id')
+            ->join('diadanhs', 'ID_DIADANH', '=', 'diadanhs.id')
+            ->select('users.HOTEN', 'users.HINHANH as HINHANHTK', 'diadanhs.TENDIADANH', 'baiviets.NOIDUNG', 'baiviets.HINHANH as HINHANHBV', 'baiviets.id', 'users.id', 'diadanhs.id')
+            ->where('baiviets.id', $id)
+            ->Where('baiviets.deleted_at', '=', null)
             ->get();
         $response['BaiViet'] =  $baiviet;
         return json_encode($response);

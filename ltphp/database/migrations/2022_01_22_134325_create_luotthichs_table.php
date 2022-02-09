@@ -15,7 +15,9 @@ class CreateLuotthichsTable extends Migration
     {
         Schema::create('luotthiches', function (Blueprint $table) {
             $table->increments('ID_LUOTTHICH');
-            $table->boolean('TRANTHAI');
+            $table->integer('ID_BAIVIET');
+            $table->integer('ID_NGUOITHICH');
+            $table->boolean('TRANGTHAI');
             $table->timestamps();
             $table->SoftDeletes();
         });
@@ -28,6 +30,6 @@ class CreateLuotthichsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('luotthichs');
+        Schema::dropIfExists('luotthiches');
     }
 }

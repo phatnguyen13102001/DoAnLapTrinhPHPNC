@@ -15,7 +15,7 @@ class TinhThanhController extends Controller
      */
     public function show($id)
     {
-        $tinhthanh = DB::table('tinhthanhs')->where('ID_MIEN', $id)->get();
+        $tinhthanh = DB::table('tinhthanhs')->where('ID_MIEN', $id)->Where('deleted_at', '=', null)->get();
         $response['TinhThanh'] =  $tinhthanh;
         return json_encode($response);
     }

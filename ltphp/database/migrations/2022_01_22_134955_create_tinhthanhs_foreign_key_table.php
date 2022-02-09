@@ -14,8 +14,8 @@ class CreateTinhthanhsForeignKeyTable extends Migration
     public function up()
     {
         Schema::table('tinhthanhs', function (Blueprint $table) {
-            $table->unsignedInteger('ID_MIEN')->after('ID_TINH');
-            $table->foreign('ID_MIEN')-> references('ID_MIEN') ->on('vungmiens')->onDelete('cascade');
+            $table->unsignedInteger('ID_MIEN')->after('id');
+            $table->foreign('ID_MIEN')->references('ID_MIEN')->on('vungmiens')->onDelete('cascade');
         });
     }
 
