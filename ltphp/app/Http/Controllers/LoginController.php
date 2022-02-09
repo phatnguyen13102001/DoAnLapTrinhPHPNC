@@ -28,7 +28,7 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials) && Auth::user()->QUYEN ==1  && Auth::user()->deleted_at ==null) {
             $request->session()->regenerate();
 
             return redirect()->intended('/taikhoan');

@@ -124,7 +124,6 @@
         </a>
       </li>
       @auth
-
       <li class="nav-item">
         <a class="nav-link" href="{{route('logout')}}">
           @csrf
@@ -146,9 +145,11 @@
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="{{ asset('AdminLTE-3.2.0-rc/dist/img/user8.png')}}" class="img-circle elevation-2" alt="User Image">
-        </div>
+        <form>
+          <div class="image">
+            <img src="{{Auth::user()->HINHANH}}" class="img-circle elevation-2" alt="User Image">
+          </div>
+        </form>
         <div class="info">
 
           <a href="#" class="d-block"> {{Auth::user()->HOTEN}}</a>
