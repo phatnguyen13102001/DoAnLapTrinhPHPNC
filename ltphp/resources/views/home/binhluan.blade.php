@@ -4,8 +4,10 @@
 <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-12">
-            <h1 style="text-align:center;font-weight:bold;">QUẢN LÝ BÀI VIẾT</h1>
+          <div class="col-sm-6">
+            <h1>Quản lý Bình Luận</h1>
+            <div class="col-sm-6"></div>
+          </div>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -13,17 +15,17 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-                 <div class="table-responsive">
-                  <table class="table table-light" >
-                    <thead class="thead thead-dark" >
+                  <table class="table table-striped">
+                    <thead>
                     <tr>
-                      <th>ID</th>
-                      <th>Người BL</th>
-                      <th>ID Bài Viết</th>
-                      <th>Nội Dung</th>
+                      <th>Id</th>
+                      <th>Id_Nguoi Binh Luan</th>
+                      <th>Id_Bai Viet</th>
+                      <th>Noi Dung</th>
                       <th>Created_At</th>
                       <th>Update_At</th>
-                      <th>Chức Năng</th>
+                      <th>Deleted_At</th>
+                      <th>Chuc Nang</th>
                     </tr>
                     </thead>
                     @foreach ($lstbinhluan as $binhluan)
@@ -35,6 +37,7 @@
                       <td>{{$binhluan->NOIDUNG}}</td>
                       <td>{{$binhluan->created_at}}</td>
                       <td>{{$binhluan->updated_at}}</td>
+                      <td>{{$binhluan->deleted_at}}</td>
                       <td>
                       <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
                       </td>
@@ -42,7 +45,6 @@
                     </tbody>
                     @endforeach
                   </table>
-                </div>
             <!-- /.invoice -->
           </div><!-- /.col -->
         </div><!-- /.row -->
