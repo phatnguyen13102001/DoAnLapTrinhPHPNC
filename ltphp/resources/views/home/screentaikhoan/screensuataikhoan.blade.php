@@ -26,12 +26,7 @@
                         <div class="form-group">
                             <label class="control-label">Mật Khẩu</label>
                             <span style="color:red;">*</span>
-                            <input class="form-control" type="password" name="matkhau" value="{{$taikhoan->password}}" placeholder="Nhập Mật Khẩu" />
-                            @if($errors->has('matkhau'))
-                            <div class="alert alert-danger" style="margin-top:10px;">
-                                {{$errors->first('matkhau')}}
-                            </div>
-                            @endif
+                            <input class="form-control" type="password" name="matkhau" value="" placeholder="Nhập Mật Khẩu" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Số Điện Thoại</label>

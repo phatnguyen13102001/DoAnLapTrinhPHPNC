@@ -147,7 +147,7 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <form>
           <div class="image">
-            <img src="{{Auth::user()->HINHANH}}" class="img-circle elevation-2" alt="User Image">
+            <img src="storage/{{Auth::user()->HINHANH}}" style="width: 40px; height: 40px; border-radius: 50px; background-position: center; background-repeat: no-repeat; background-size: cover;" alt="User Image">
           </div>
         </form>
         <div class="info">
@@ -211,7 +211,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="binhluan" class="nav-link">
+            <a href="{{route('binhluan.index')}}" class="nav-link">
               <i class="fas fa-comment"></i>
               <p>
                 Quản Lý Bình Luận
@@ -219,7 +219,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="luotthich" class="nav-link">
+            <a href="{{route('luotthich.index')}}" class="nav-link">
               <i class="far fa-thumbs-up"></i>
               <p>
                 Quản Lý Lượt Thích
@@ -227,7 +227,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="luotxem" class="nav-link">
+            <a href="{{route('luotxem.index')}}" class="nav-link">
               <i class="fas fa-eye"></i>
               <p>
                 Quản Lý Lượt Xem
@@ -235,7 +235,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="yeuthich" class="nav-link">
+            <a href="{{route('yeuthich.index')}}" class="nav-link">
               <i class="fas fa-heart"></i>
               <p>
                 Quản Lý Lượt Yêu Thích

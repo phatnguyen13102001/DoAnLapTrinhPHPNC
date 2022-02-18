@@ -17,9 +17,10 @@ class BinhLuanController extends Controller
     public function ShowCommentByIDPost($id_baiviet)
     {
         $binhluan = DB::table('binhluans')
-            ->select('*')
+            ->join('users', 'ID_NGUOIBL', '=', 'users.id')
+            ->select('binhluans.id', 'users.HOTEN', 'binhluans.ID_BAIVIET', 'users.HINHANH', 'binhluans.NOIDUNG')
             ->where('binhluans.ID_BAIVIET', $id_baiviet)
-            ->Where('baiviets.deleted_at', '=', null)
+            ->Where('binhluans.deleted_at', '=', null)
             ->get();
         $response['BinhLuan'] =  $binhluan;
         return json_encode($response);
@@ -30,7 +31,6 @@ class BinhLuanController extends Controller
         $binhluan = binhluan::create([
             'ID_BAIVIET' => $request->ID_BAIVIET,
             'ID_NGUOIBL' => $request->ID_NGUOIBL,
-            'HINHANHTK' => $request->HINHANHTK,
             'NOIDUNG' => $request->NOIDUNG
         ]);
 

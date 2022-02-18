@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class TaikhoanController extends Controller
 {
@@ -104,25 +105,40 @@ class TaikhoanController extends Controller
         $validatedData = $request->validate(
             [
                 'hoten' => 'required',
-                'matkhau' => 'required',
                 'sodienthoai' => 'required',
             ],
             [
                 'hoten.required' => 'Họ Tên Không Được Bỏ Trống',
-                'matkhau.required' => 'Mật Khẩu Không Được Bỏ Trống',
                 'sodienthoai.required' => 'Số Điện Thoại Không Được Bỏ Trống',
             ]
         );
         if ($request->hasFile('HINHANH')) {
             $taikhoan->HINHANH = $request->file('HINHANH')->store('images/avatar/', 'public');
         }
-        $taikhoan->fill([
-            'HOTEN' => $request->input('hoten'),
-            'password' => bcrypt($request->input('matkhau')),
-            'SDT' => $request->input('sodienthoai'),
-            'QUYEN' => $request->input('phanquyen'),
-        ]);
+
+        if ($request->input('matkhau') == "") {
+            $password =
+                DB::table('users')
+                ->select('*')
+                ->Where('id', '=', $taikhoan['id'])
+                ->get();
+            $password1 = json_decode($password, true);
+            $taikhoan->fill([
+                'HOTEN' => $request->input('hoten'),
+                'password' => $password1[0]['password'],
+                'SDT' => $request->input('sodienthoai'),
+                'QUYEN' => $request->input('phanquyen'),
+            ]);
+        } else {
+            $taikhoan->fill([
+                'HOTEN' => $request->input('hoten'),
+                'password' => bcrypt($request->input('matkhau')),
+                'SDT' => $request->input('sodienthoai'),
+                'QUYEN' => $request->input('phanquyen'),
+            ]);
+        }
         $taikhoan->save();
+        // var_dump($password1[0]['password']);
         return Redirect::route('taikhoan.index', ['taikhoan' => $taikhoan]);
     }
 

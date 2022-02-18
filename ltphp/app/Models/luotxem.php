@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class luotxem extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'ID_LUOTXEM',
         'ID_NGUOIXEM',
@@ -18,11 +18,11 @@ class luotxem extends Model
 
     public function taikhoan()
     {
-        return $this->belongsTo('App\Models\User','ID_NGUOIXEM','ID_LUOTXEM');
+        return $this->belongsTo('App\Models\User', 'ID_NGUOIXEM', 'id');
     }
 
     public function baiviet()
     {
-        return $this->belongsTo('App\Models\User','ID_BAIVIET','ID_LUOTXEM');
+        return $this->belongsTo('App\Models\baiviet', 'ID_BAIVIET', 'id');
     }
 }

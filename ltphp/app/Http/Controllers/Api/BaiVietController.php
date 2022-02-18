@@ -51,7 +51,7 @@ class BaiVietController extends Controller
         $baiviet = DB::table('baiviets')
             ->join('users', 'ID_NGUOIDANG', '=', 'users.id')
             ->join('diadanhs', 'ID_DIADANH', '=', 'diadanhs.id')
-            ->select('users.HOTEN', 'users.HINHANH as HINHANHTK', 'diadanhs.TENDIADANH', 'baiviets.NOIDUNG', 'baiviets.HINHANH as HINHANHBV', 'baiviets.id', 'users.id', 'diadanhs.id')
+            ->select('users.HOTEN', 'users.HINHANH as HINHANHTK', 'diadanhs.TENDIADANH', 'baiviets.NOIDUNG', 'baiviets.HINHANH as HINHANHBV', 'baiviets.id', 'users.id as ID_NGUOIDANG', 'diadanhs.id as ID_DIADANH')
             ->where('baiviets.ID_DIADANH', $id)
             ->Where('baiviets.deleted_at', '=', null)
             ->get();
@@ -59,13 +59,13 @@ class BaiVietController extends Controller
         return json_encode($response);
     }
 
-    public function ShowPostByIDUser($id)
+    public function ShowPostByIDUser($id_nguoidang)
     {
         $baiviet = DB::table('baiviets')
             ->join('users', 'ID_NGUOIDANG', '=', 'users.id')
             ->join('diadanhs', 'ID_DIADANH', '=', 'diadanhs.id')
-            ->select('users.HOTEN', 'users.HINHANH as HINHANHTK', 'diadanhs.TENDIADANH', 'baiviets.NOIDUNG', 'baiviets.HINHANH as HINHANHBV', 'baiviets.id', 'users.id', 'diadanhs.id')
-            ->where('baiviets.ID_NGUOIDANG', $id)
+            ->select('users.HOTEN', 'users.HINHANH as HINHANHTK', 'diadanhs.TENDIADANH', 'baiviets.NOIDUNG', 'baiviets.HINHANH as HINHANHBV', 'baiviets.id', 'users.id as ID_NGUOIDANG', 'diadanhs.id as ID_DIADANH')
+            ->where('baiviets.ID_NGUOIDANG', $id_nguoidang)
             ->Where('baiviets.deleted_at', '=', null)
             ->get();
         $response['BaiViet'] =  $baiviet;
@@ -86,13 +86,21 @@ class BaiVietController extends Controller
 
     public function ShowPostByIDPost($id)
     {
-        $baiviet = DB::table('baiviets')
-            ->join('users', 'ID_NGUOIDANG', '=', 'users.id')
-            ->join('diadanhs', 'ID_DIADANH', '=', 'diadanhs.id')
-            ->select('users.HOTEN', 'users.HINHANH as HINHANHTK', 'diadanhs.TENDIADANH', 'baiviets.NOIDUNG', 'baiviets.HINHANH as HINHANHBV', 'baiviets.id', 'users.id', 'diadanhs.id')
-            ->where('baiviets.id', $id)
-            ->Where('baiviets.deleted_at', '=', null)
-            ->get();
+        // $baiviet = DB::table('baiviets')
+        //     ->join('users', 'ID_NGUOIDANG', '=', 'users.id')
+        //     ->join('diadanhs', 'ID_DIADANH', '=', 'diadanhs.id')
+        //     ->select('users.HOTEN', 'users.HINHANH as HINHANHTK', 'diadanhs.TENDIADANH', 'baiviets.NOIDUNG', 'baiviets.HINHANH as HINHANHBV', 'baiviets.id', 'users.id as ID_NGUOIDANG', 'diadanhs.id as ID_DIADANH')
+        //     ->where('baiviets.id', $id)
+        //     ->Where('baiviets.deleted_at', '=', null)
+        //     ->get();
+        $baiviet = DB::select('SELECT users.HOTEN, users.HINHANH as HINHANHTK, diadanhs.TENDIADANH, baiviets.NOIDUNG, baiviets.HINHANH as HINHANHBV, baiviets.id, users.id as ID_NGUOIDANG, diadanhs.id as ID_DIADANH, COUNT(binhluans.ID_BAIVIET) as SOLUONGBL FROM baiviets,users,diadanhs,binhluans WHERE baiviets.ID_NGUOIDANG =users.id AND baiviets.ID_DIADANH =diadanhs.id AND baiviets.id=binhluans.ID_BAIVIET AND baiviets.id=? AND baiviets.deleted_at is NULL AND binhluans.deleted_at is NULL', [$id]);
+        $response['BaiViet'] =  $baiviet;
+        return json_encode($response);
+    }
+
+    public function ShowView($id)
+    {
+        $baiviet = DB::select('SELECT users.HOTEN, users.HINHANH as HINHANHTK, diadanhs.TENDIADANH, baiviets.NOIDUNG, baiviets.HINHANH as HINHANHBV, baiviets.id, users.id as ID_NGUOIDANG, diadanhs.id as ID_DIADANH, COUNT(luotxems.ID_BAIVIET) as SOLUONGLX FROM baiviets,users,diadanhs,luotxems WHERE baiviets.ID_NGUOIDANG =users.id AND baiviets.ID_DIADANH =diadanhs.id AND baiviets.id =luotxems.ID_BAIVIET AND baiviets.id=? AND baiviets.deleted_at is NULL;', [$id]);
         $response['BaiViet'] =  $baiviet;
         return json_encode($response);
     }

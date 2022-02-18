@@ -21,7 +21,6 @@
                 <th>Người Thích</th>
                 <th>Địa Danh</th>
                 <th>Trạng Thái</th>
-                <th>Created_At</th>
                 <th>Updated_At</th>
               </tr>
             </thead>
@@ -36,7 +35,6 @@
                 @elseif ($yeuthich->TRANGTHAI == 0)
                 <td>Bỏ Thích</td>
                 @endif
-                <td>{{$yeuthich->created_at}}</td>
                 <td>{{$yeuthich->updated_at}}</td>
               </tr>
             </tbody>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\binhluan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 class BinhluanController extends Controller
 {
     /**
@@ -14,8 +15,8 @@ class BinhluanController extends Controller
      */
     public function index()
     {
-        $lstbinhluan= DB::table('binhluans')->select('*')->get();
-        return view('home.binhluan',['lstbinhluan' => $lstbinhluan]);
+        $lstbinhluan = binhluan::all();
+        return view('home.binhluan', ['lstbinhluan' => $lstbinhluan]);
     }
 
     /**
