@@ -11,7 +11,11 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\BaiVietController;
 use App\Http\Controllers\Api\YeuThichController;
 use App\Http\Controllers\Api\BinhLuanController;
+<<<<<<< HEAD
 use App\Http\Controllers\Api\TimKiemController;
+=======
+use App\Http\Controllers\Api\luotXemController;
+>>>>>>> ee2ff7efc9ee9d2e8913b68dd5efc913f5f08f58
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -67,7 +71,7 @@ Route::get('/baiviettheodiadanh/{id}', [BaiVietController::class, 'ShowPostByIDS
 //Api Bài Viết Theo Người Dùng
 Route::get('/baiviettheonguoidung/{id}', [BaiVietController::class, 'ShowPostByIDUser']);
 
-//Api Bài Viết Theo ID Địa Danh
+//Api Bài Viết Theo ID Bài Viết
 Route::get('/chitietbaiviet/{id}', [BaiVietController::class, 'ShowPostByIDPost']);
 
 //Api Tất Cả Bài Viết
@@ -90,5 +94,17 @@ Route::get('/diadanhnoibat', [DiaDanhController::class, 'ShowHotSite']);
 
 //Api Bình Luận Theo Bài Viết
 Route::get('/binhluan/{id}', [BinhLuanController::class, 'ShowCommentByIDPost']);
+<<<<<<< HEAD
 Route::get('/diadanhall', [DiaDanhController::class, 'showallsite']);
 Route::get('/timkiemdiadanh/{id}', [TimKiemController::class, 'timkiemdiadanh']);
+=======
+
+//Api Thêm Bình Luận
+Route::post('/thembinhluan', [BinhLuanController::class, 'InsertComment']);
+
+//Api Them Luot Xem
+Route::post('/themluotxem', [LuotXemController::class, 'InsertView']);
+
+//Api Hien Thi Luot Xem
+Route::get('/hienthiluotxem/{id}', [BaiVietController::class, 'ShowView']);
+>>>>>>> ee2ff7efc9ee9d2e8913b68dd5efc913f5f08f58

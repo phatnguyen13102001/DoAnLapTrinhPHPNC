@@ -23,29 +23,32 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
 
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        $credentials = $request->validate(
+            [
+                'email' => 'required|email',
+                'password' => 'required',
+            ],
+            [
+                'email.required' => 'Email Không Được Bỏ Trống',
+                'password.required' => 'Mật Khẩu Không Được Bỏ Trống',
+                'email.email' => 'Email Không Đúng Định Dạng',
+            ]
+        );
 
-        if (Auth::attempt($credentials) && Auth::user()->QUYEN ==1  && Auth::user()->deleted_at ==null) {
+        if (Auth::attempt($credentials) && Auth::user()->QUYEN == 1  && Auth::user()->deleted_at == null) {
             $request->session()->regenerate();
 
             return redirect()->intended('/taikhoan');
         }
-
-        return back()->withErrors([
-            'email' => 'Email hoặc Password sai, xin vui lòng nhập lại.',
-        ]);
     }
     public function logout(Request $request)
-{
-    Auth::logout();
+    {
+        Auth::logout();
 
-    $request->session()->invalidate();
+        $request->session()->invalidate();
 
-    $request->session()->regenerateToken();
+        $request->session()->regenerateToken();
 
-    return redirect('/');
-}
+        return redirect('/');
+    }
 }

@@ -19,8 +19,7 @@
               <tr>
                 <th>ID</th>
                 <th>Người Xem</th>
-                <th>ID_Bài Viết</th>
-                <th>Trạng Thái</th>
+                <th>Bài Viết</th>
                 <th>Created_At</th>
                 <th>Updated_At</th>
               </tr>
@@ -29,9 +28,8 @@
             <tbody>
               <tr>
                 <td>{{$luotxem->id}}</td>
-                <td>{{$luotxem->ID_NGUOIXEM}}</td>
-                <td>{{$luotxem->ID_BAIVIET}}</td>
-                <td>{{$luotxem->TRANGTHAI}}</td>
+                <td>{{$luotxem->taikhoan->HOTEN}}</td>
+                <td>{{$luotxem->baiviet->diadanh->TENDIADANH}}</td>
                 <td>{{$luotxem->created_at}}</td>
                 <td>{{$luotxem->updated_at}}</td>
               </tr>

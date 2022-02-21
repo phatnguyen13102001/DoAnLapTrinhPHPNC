@@ -27,26 +27,21 @@ class YeuThichController extends Controller
         $yeuthich1 = $yeuthich->count();
         if ($yeuthich1 == 1) {
             if ($data[0]['TRANGTHAI'] == 1) {
-                $updated = DB::update('update yeuthiches set TRANGTHAI = ? where ID_NGUOITHICH = ? AND ID_DIADANH= ?', [0, $id_nguoithich, $id_diadanh]);
+                $updated =
+                    yeuthich::where('ID_NGUOITHICH', $id_nguoithich)
+                    ->where('ID_DIADANH', $id_diadanh)
+                    ->update(['TRANGTHAI' => 0]);
             } else {
-                $updated = DB::update('update yeuthiches set TRANGTHAI = ? where ID_NGUOITHICH = ? AND ID_DIADANH= ?', [1, $id_nguoithich, $id_diadanh]);
+                $updated =
+                    yeuthich::where('ID_NGUOITHICH', $id_nguoithich)
+                    ->where('ID_DIADANH', $id_diadanh)
+                    ->update(['TRANGTHAI' => 1]);
             }
         } else {
             $insert =
                 DB::insert('insert into yeuthiches (ID_NGUOITHICH, ID_DIADANH) values (?, ?)', [$id_nguoithich, $id_diadanh]);
         }
         echo json_encode($yeuthich);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
