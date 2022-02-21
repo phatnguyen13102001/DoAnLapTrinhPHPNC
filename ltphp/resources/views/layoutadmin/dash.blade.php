@@ -147,7 +147,7 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <form>
           <div class="image">
-            <img src="{{Auth::user()->HINHANH}}" class="img-circle elevation-2" alt="User Image">
+            <img src="storage/{{Auth::user()->HINHANH}}" class="img-circle elevation-2" alt="User Image">
           </div>
         </form>
         <div class="info">

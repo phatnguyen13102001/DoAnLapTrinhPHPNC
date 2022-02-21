@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\BaiVietController;
 use App\Http\Controllers\Api\YeuThichController;
 use App\Http\Controllers\Api\BinhLuanController;
+use App\Http\Controllers\Api\TimKiemController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -89,3 +90,5 @@ Route::get('/diadanhnoibat', [DiaDanhController::class, 'ShowHotSite']);
 
 //Api Bình Luận Theo Bài Viết
 Route::get('/binhluan/{id}', [BinhLuanController::class, 'ShowCommentByIDPost']);
+Route::get('/diadanhall', [DiaDanhController::class, 'showallsite']);
+Route::get('/timkiemdiadanh/{id}', [TimKiemController::class, 'timkiemdiadanh']);
