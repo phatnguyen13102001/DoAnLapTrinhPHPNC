@@ -11,11 +11,9 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\BaiVietController;
 use App\Http\Controllers\Api\YeuThichController;
 use App\Http\Controllers\Api\BinhLuanController;
-<<<<<<< HEAD
-use App\Http\Controllers\Api\TimKiemController;
-=======
 use App\Http\Controllers\Api\luotXemController;
->>>>>>> ee2ff7efc9ee9d2e8913b68dd5efc913f5f08f58
+use App\Http\Controllers\Api\SliderController;
+use App\Http\Controllers\Api\LoginController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -94,10 +92,10 @@ Route::get('/diadanhnoibat', [DiaDanhController::class, 'ShowHotSite']);
 
 //Api Bình Luận Theo Bài Viết
 Route::get('/binhluan/{id}', [BinhLuanController::class, 'ShowCommentByIDPost']);
-<<<<<<< HEAD
+
 Route::get('/diadanhall', [DiaDanhController::class, 'showallsite']);
+
 Route::get('/timkiemdiadanh/{id}', [TimKiemController::class, 'timkiemdiadanh']);
-=======
 
 //Api Thêm Bình Luận
 Route::post('/thembinhluan', [BinhLuanController::class, 'InsertComment']);
@@ -107,4 +105,9 @@ Route::post('/themluotxem', [LuotXemController::class, 'InsertView']);
 
 //Api Hien Thi Luot Xem
 Route::get('/hienthiluotxem/{id}', [BaiVietController::class, 'ShowView']);
->>>>>>> ee2ff7efc9ee9d2e8913b68dd5efc913f5f08f58
+
+//Api Hien thi slider
+Route::get('/hienthislider', [SliderController::class, 'index']);
+
+//Api Hien thi slider
+Route::post('/login', [LoginController::class, 'login']);

@@ -11,6 +11,7 @@ use App\Http\Controllers\BinhluanController;
 use App\Http\Controllers\LuotthichController;
 use App\Http\Controllers\LuotxemController;
 use App\Http\Controllers\YeuthichController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function () {
   Route::resource('/binhluan', BinhluanController::class);
   Route::resource('/luotxem', LuotxemController::class);
   Route::resource('/luotthich', LuotthichController::class);
+  Route::resource('/slider', SliderController::class);
   Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 });
 Route::get('/', [LoginController::class, 'index'])->name('login');

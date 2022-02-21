@@ -21,7 +21,7 @@ class DiadanhController extends Controller
     }
     public function index()
     {
-        $lstdiadanh=diadanh::orderby('created_at','DESC')->paginate(10);
+        $lstdiadanh = diadanh::orderby('created_at', 'DESC')->paginate(6);
         //$lstdiadanh = diadanh::all();
         foreach ($lstdiadanh as $diadanh) {
             $this->fixImage($diadanh);

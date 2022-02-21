@@ -40,6 +40,9 @@ class LoginController extends Controller
 
             return redirect()->intended('/taikhoan');
         }
+        return back()->withErrors([
+            'password' => 'Tài khoản hoặc mật khẩu sai',
+        ]);
     }
     public function logout(Request $request)
     {
