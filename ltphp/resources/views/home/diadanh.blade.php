@@ -66,8 +66,13 @@
                 </td>
               </tr>
             </tbody>
+
             @endforeach
           </table>
+          <hr>
+          <div>
+            {{$lstdiadanh->appends(request()->all())->links()}}
+          </div>
         </div>
         <!-- /.invoice -->
       </div><!-- /.col -->

@@ -11,6 +11,7 @@ use App\Http\Controllers\BinhluanController;
 use App\Http\Controllers\LuotthichController;
 use App\Http\Controllers\LuotxemController;
 use App\Http\Controllers\YeuthichController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SliderController;
 /*

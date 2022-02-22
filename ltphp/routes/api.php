@@ -93,6 +93,10 @@ Route::get('/diadanhnoibat', [DiaDanhController::class, 'ShowHotSite']);
 //Api Bình Luận Theo Bài Viết
 Route::get('/binhluan/{id}', [BinhLuanController::class, 'ShowCommentByIDPost']);
 
+Route::get('/diadanhall', [DiaDanhController::class, 'showallsite']);
+
+Route::get('/timkiemdiadanh/{id}', [TimKiemController::class, 'timkiemdiadanh']);
+
 //Api Thêm Bình Luận
 Route::post('/thembinhluan', [BinhLuanController::class, 'InsertComment']);
 

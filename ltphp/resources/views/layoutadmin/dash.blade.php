@@ -243,8 +243,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{url('slider')}}" class="nav-link">
-              <i class="fas fa-align-right"></i>
+            <a href="{{route('slider.index')}}" class="nav-link">
+              <i class="fas fa-sliders-h"></i>
               <p>
                 Quản Lý Slider
               </p>
