@@ -13,7 +13,6 @@ use App\Http\Controllers\LuotxemController;
 use App\Http\Controllers\YeuthichController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\SliderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,4 +40,3 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/', [LoginController::class, 'authenticate'])->name('login');
-

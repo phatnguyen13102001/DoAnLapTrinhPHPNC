@@ -110,3 +110,5 @@ Route::get('/hienthiluotxem/{id}', [BaiVietController::class, 'ShowView']);
 Route::get('/hienthislider', [SliderController::class, 'index']);
 
 Route::post('/dexuatdiadanh', [DeXuatDiaDanhController::class, 'offersite']);
+//Api Xoa Bai Viet
+Route::post('/xoabaiviet/{id}', [BaiVietController::class, 'DeletedPost']);
