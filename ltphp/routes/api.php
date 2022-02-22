@@ -12,6 +12,8 @@ use App\Http\Controllers\Api\BaiVietController;
 use App\Http\Controllers\Api\YeuThichController;
 use App\Http\Controllers\Api\BinhLuanController;
 use App\Http\Controllers\Api\luotXemController;
+use App\Http\Controllers\Api\SliderController;
+use App\Http\Controllers\Api\DeXuatDiaDanhController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -99,3 +101,8 @@ Route::post('/themluotxem', [LuotXemController::class, 'InsertView']);
 
 //Api Hien Thi Luot Xem
 Route::get('/hienthiluotxem/{id}', [BaiVietController::class, 'ShowView']);
+
+//Api Hien thi slider
+Route::get('/hienthislider', [SliderController::class, 'index']);
+
+Route::post('/dexuatdiadanh', [DeXuatDiaDanhController::class, 'offersite']);

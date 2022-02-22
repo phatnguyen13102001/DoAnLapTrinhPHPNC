@@ -242,6 +242,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{url('slider')}}" class="nav-link">
+              <i class="fas fa-align-right"></i>
+              <p>
+                Quản Lý Slider
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
