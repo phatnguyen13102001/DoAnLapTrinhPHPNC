@@ -250,6 +250,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{route('dexuat.index')}}" class="nav-link">
+              <i class="fas fa-check"></i>
+              <p>
+                Quản Lý Đề Xuất
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
