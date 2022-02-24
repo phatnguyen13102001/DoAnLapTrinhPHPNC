@@ -53,4 +53,10 @@ class DiaDanhController extends Controller
         $response['DiaDanhNoiBat'] =  $diadanh;
         return json_encode($response);
     }
+    public function ShowAllSite()
+    {
+        $diadanh = diadanh::all();
+        $response['DIADANH'] = $diadanh;
+        return json_encode($response);
+    }
 }

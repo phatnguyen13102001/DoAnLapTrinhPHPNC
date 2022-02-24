@@ -36,7 +36,13 @@
                 <td>{{$binhluan->created_at}}</td>
                 <td>{{$binhluan->updated_at}}</td>
                 <td>
-                  <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
+                  <form method="post" action="{{route('binhluan.destroy',['binhluan'=>$binhluan])}}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-outline-danger">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </form>
                 </td>
               </tr>
             </tbody>

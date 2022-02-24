@@ -1,54 +1,56 @@
 @extends('layoutadmin.dash')
 @section('section')
+<style>
+  .search {
+    position: relative;
+    box-shadow: 0 0 40px rgba(51, 51, 51, .1)
+  }
+
+  .search input {
+    height: 60px;
+    text-indent: 25px;
+    border: 2px solid #d6d4d4
+  }
+
+  .search input:focus {
+    box-shadow: none;
+    border: 2px solid blue
+  }
+
+  .search .fa-search {
+    position: absolute;
+    top: 20px;
+    left: 16px
+  }
+
+  .search button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 50px;
+    width: 110px;
+    background: blue
+  }
+</style>
 <div class="content-wrapper">
   <section class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-12">
           <h1 style="text-align:center;font-weight:bold;">QUẢN LÝ TÀI KHOẢN</h1>
-          <div class="col-sm-6">
-            <a href="{{route('taikhoan.create')}}"> <button type="button" class="btn btn-success">Thêm</button></a>
+          <div class="col-sm-12">
+            <a href="{{route('taikhoan.create')}}"><button type="button" class="btn btn-success"><i class="fas fa-plus"> Thêm</i></button></a>
+            <form action="#" method="get">
+              <div class="container">
+                <div class="row height d-flex justify-content-center align-items-center">
+                  <div class="col-md-8">
+                    <div class="search"> <i class="fa fa-search"></i> <input type="text" class="form-control" placeholder="Have a question? Ask Now"> <button class="btn btn-primary" type="submit">Search</button> </div>
+                  </div>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      
-    </ul>
-
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
-
-      <!-- Messages Dropdown Menu -->
-     
-      <!-- Notifications Dropdown Menu -->
-      
-      
-      
-    </ul>
-  </nav>
- 
       </div>
     </div><!-- /.container-fluid -->
   </section>

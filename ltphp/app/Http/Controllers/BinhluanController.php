@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\binhluan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class BinhluanController extends Controller
 {
@@ -82,6 +84,7 @@ class BinhluanController extends Controller
      */
     public function destroy(binhluan $binhluan)
     {
-        //
+        $binhluan->delete();
+        return Redirect::route('binhluan.index');
     }
 }

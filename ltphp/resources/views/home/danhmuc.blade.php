@@ -7,7 +7,7 @@
         <div class="col-sm-12">
           <h1 style="text-align:center;font-weight:bold;">QUẢN LÝ DANH MỤC</h1>
           <div class="col-sm-6">
-            <a href="{{route('danhmuc.create')}}"> <button type="button" class="btn btn-success">Thêm</button></a>
+            <a href="{{route('danhmuc.create')}}"><button type="button" class="btn btn-success"><i class="fas fa-plus"> Thêm</i></button></a>
             </ol>
           </div>
         </div>

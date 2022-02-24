@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\dexuat;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,11 +20,11 @@ class DexuatdiadanhController extends Controller
     public function index()
     {
         $lstdexuat = dexuat::all();
-        foreach ( $lstdexuat as $dexuat) {
+        foreach ($lstdexuat as $dexuat) {
             $this->fixImage($dexuat);
         }
         return view('home.dexuat', [
-            'lstdexuat'=>$lstdexuat
+            'lstdexuat' => $lstdexuat
         ]);
     }
     public function destroy(dexuat $dexuat)

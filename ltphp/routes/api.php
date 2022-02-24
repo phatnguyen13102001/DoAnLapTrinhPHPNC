@@ -14,6 +14,8 @@ use App\Http\Controllers\Api\BinhLuanController;
 use App\Http\Controllers\Api\luotXemController;
 use App\Http\Controllers\Api\SliderController;
 use App\Http\Controllers\Api\DeXuatDiaDanhController;
+use App\Http\Controllers\Api\MonanController;
+use App\Http\Controllers\Api\LuuTruController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -112,3 +114,11 @@ Route::get('/hienthislider', [SliderController::class, 'index']);
 Route::post('/dexuatdiadanh', [DeXuatDiaDanhController::class, 'offersite']);
 //Api Xoa Bai Viet
 Route::post('/xoabaiviet/{id}', [BaiVietController::class, 'DeletedPost']);
+
+Route::get('/tatcamonan/{id}', [MonanController::class, 'showmonan']);
+
+Route::get('/tatcakhachsan/{id}', [LuuTruController::class, 'showluutru']);
+
+Route::get('/tatcadiadanh', [DiaDanhController::class, 'ShowAllSite']);
+
+Route::get('/baivietnoibat', [BaiVietController::class, 'ShowHotPost']);

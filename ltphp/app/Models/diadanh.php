@@ -35,7 +35,7 @@ class diadanh extends Model
 
     public function baiviet()
     {
-        return $this->hasMany('App\Models\baiviet', 'ID_DIADANH', 'ID_BAIVIET');
+        return $this->hasMany('App\Models\baiviet', 'id', 'ID_BAIVIET');
     }
 
     public function yeuthich()

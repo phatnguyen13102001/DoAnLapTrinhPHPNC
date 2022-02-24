@@ -7,7 +7,7 @@
         <div class="col-sm-12">
           <h1 style="text-align:center;font-weight:bold;">QUẢN LÝ MIỀN</h1>
           <div class="col-sm-6">
-            <a href="{{route('mien.create')}}"> <button type="button" class="btn btn-success">Thêm</button></a>
+            <a href="{{route('mien.create')}}"><button type="button" class="btn btn-success"><i class="fas fa-plus"> Thêm</i></button></a>
           </div>
         </div>
       </div>

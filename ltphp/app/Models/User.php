@@ -33,7 +33,7 @@ class User extends Authenticatable
 
     public function baiviet()
     {
-        return $this->hasMany('App\Models\baiviet', 'ID_NGUOIDANG', 'ID_BAIVIET');
+        return $this->hasMany('App\Models\baiviet', 'ID_NGUOIDANG', 'id');
     }
 
     public function binhluan()

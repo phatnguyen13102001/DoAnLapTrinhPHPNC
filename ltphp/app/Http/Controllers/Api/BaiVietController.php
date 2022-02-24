@@ -116,4 +116,11 @@ class BaiVietController extends Controller
         baiviet::where('id', $id)->delete();
         return "Success";
     }
+    public function ShowHotPost()
+    {
+
+        $baiviet = DB::select("SELECT baiviets.id,baiviets.ID_NGUOIDANG,users.HOTEN,diadanhs.TENDIADANH,baiviets.ID_DIADANH,baiviets.NOIDUNG,baiviets.HINHANH AS 'HINHANHBV',users.HINHANH AS 'HINHANHTK',COUNT(luotxems.ID_BAIVIET) AS 'LUOTXEM' FROM baiviets,luotxems,users,diadanhs WHERE baiviets.id=luotxems.ID_BAIVIET AND baiviets.ID_NGUOIDANG= users.id AND baiviets.ID_DIADANH=diadanhs.id AND baiviets.deleted_at is null GROUP BY luotxems.ID_BAIVIET ORDER BY COUNT(luotxems.ID_BAIVIET) DESC LIMIT 0,10;");
+        $response['Baivietnoibat'] =  $baiviet;
+        return json_encode($response);
+    }
 }

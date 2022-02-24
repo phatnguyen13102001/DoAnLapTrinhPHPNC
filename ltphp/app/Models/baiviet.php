@@ -15,7 +15,6 @@ class baiviet extends Model
     protected $guarded = [];
 
     protected $fillable = [
-        'ID_BAIVIET',
         'ID_NGUOIDANG',
         'ID_DIADANH',
         'NOIDUNG',

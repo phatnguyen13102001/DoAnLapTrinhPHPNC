@@ -14,6 +14,8 @@ use App\Http\Controllers\YeuthichController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DexuatdiadanhController;
+use App\Http\Controllers\MonanController;
+use App\Http\Controllers\LuuTruController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,6 +40,8 @@ Route::middleware('auth')->group(function () {
   Route::resource('/luotthich', LuotthichController::class);
   Route::resource('/slider', SliderController::class);
   Route::resource('/dexuat', DexuatdiadanhController::class);
+  Route::resource('/monan', MonanController::class);
+  Route::resource('/luutru', LuuTruController::class);
   Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 });
 Route::get('/', [LoginController::class, 'index'])->name('login');

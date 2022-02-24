@@ -6,23 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class dexuat extends Model
+class monan extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = "dexuats";
+    protected $table = "monans";
 
     protected $guarded = [];
-
     protected $fillable = [
-        'ID_TAIKHOAN',
-        'TENDANHMUC',
-        'TENDIADANH',
-        'TENTINHTHANH',
-        'DIACHI',
+        'ID_DIADANH',
+        'TENMONAN',
         'HINHANH',
     ];
-    public function taikhoan()
+    public function diadanh()
     {
-        return $this->belongsTo('App\Models\User', 'ID_TAIKHOAN', 'id');
+        return $this->belongsTo('App\Models\diadanh', 'ID_DIADANH', 'id');
     }
 }

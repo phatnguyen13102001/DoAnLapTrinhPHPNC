@@ -18,13 +18,13 @@
             <thead class="thead thead-dark">
               <tr>
                 <th>ID</th>
-                <th>TÊN TÀI KHOẢN</th>
-                <th>TÊN DANH MỤC</th>
-                <th>TÊN ĐỊA DANH</th>
-                <th>TÊN TỈNH THÀNH</th>
-                <th>HÌNH ẢNH</th>
-                <th>ĐỊA CHỈ</th>
-                <th>CHỨC NĂNG</th>
+                <th>Tài Khoản</th>
+                <th>Danh Mục</th>
+                <th>Địa Danh</th>
+                <th>Tỉnh Thành</th>
+                <th>Hình Ảnh</th>
+                <th>Địa Chỉ</th>
+                <th>Duyệt</th>
               </tr>
             </thead>
             @foreach ($lstdexuat as $dexuat)
@@ -42,7 +42,7 @@
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-outline-success">
-                      <i class="fas fa-check></i>
+                      <i class="fas fa-check"></i>
                     </button>
                   </form>
                 </td>
@@ -52,9 +52,6 @@
             @endforeach
           </table>
           <hr>
-          <div>
-            {{$lstdexuat->appends(request()->all())->links()}}
-          </div>
         </div>
         <!-- /.invoice -->
       </div><!-- /.col -->
